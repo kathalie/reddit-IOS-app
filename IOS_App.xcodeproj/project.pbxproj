@@ -13,6 +13,7 @@
 		8C92A52D2B7824B90083C638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C92A52B2B7824B90083C638 /* Main.storyboard */; };
 		8C92A52F2B7824BB0083C638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C92A52E2B7824BB0083C638 /* Assets.xcassets */; };
 		8C92A5322B7824BB0083C638 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C92A5302B7824BB0083C638 /* LaunchScreen.storyboard */; };
+		8C92A53A2B782A940083C638 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C92A5392B782A940083C638 /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8C92A52E2B7824BB0083C638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C92A5312B7824BB0083C638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C92A5332B7824BB0083C638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C92A5392B782A940083C638 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				8C92A52E2B7824BB0083C638 /* Assets.xcassets */,
 				8C92A5302B7824BB0083C638 /* LaunchScreen.storyboard */,
 				8C92A5332B7824BB0083C638 /* Info.plist */,
+				8C92A5392B782A940083C638 /* PostViewController.swift */,
 			);
 			path = IOS_App;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C92A53A2B782A940083C638 /* PostViewController.swift in Sources */,
 				8C92A52A2B7824B90083C638 /* ViewController.swift in Sources */,
 				8C92A5262B7824B90083C638 /* AppDelegate.swift in Sources */,
 				8C92A5282B7824B90083C638 /* SceneDelegate.swift in Sources */,
