@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,52 +8,52 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Post View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="IOS_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PostViewController" customModule="IOS_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9io-cx-zAC">
-                                <rect key="frame" x="16" y="288.66666666666669" width="361" height="300.00000000000006"/>
+                                <rect key="frame" x="16" y="303" width="382" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KnI-oS-JzL">
-                                        <rect key="frame" x="16" y="8" width="329" height="30"/>
+                                        <rect key="frame" x="16" y="8" width="350" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h66-ce-Efb">
-                                                <rect key="frame" x="0.0" y="4" width="82.666666666666671" height="21.666666666666668"/>
+                                                <rect key="frame" x="0.0" y="4.3333333333333144" width="82.666666666666671" height="21.666666666666668"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atb-0T-S60">
-                                                <rect key="frame" x="90.666666666666671" y="4.6666666666666288" width="4" height="20.333333333333332"/>
+                                                <rect key="frame" x="90.666666666666671" y="5" width="4" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-w3-36k">
-                                                <rect key="frame" x="102.66666666666666" y="4" width="29" height="21.666666666666668"/>
+                                                <rect key="frame" x="102.66666666666666" y="4.3333333333333144" width="29" height="21.666666666666668"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gt-v1-3gd">
-                                                <rect key="frame" x="139.66666666666666" y="4.6666666666666288" width="4" height="20.333333333333332"/>
+                                                <rect key="frame" x="139.66666666666666" y="5" width="4" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zM-FD-EFr">
-                                                <rect key="frame" x="151.66666666666666" y="4" width="61.666666666666657" height="21.666666666666668"/>
+                                                <rect key="frame" x="151.66666666666666" y="4.3333333333333144" width="61.666666666666657" height="21.666666666666668"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wN-gt-tqD">
-                                                <rect key="frame" x="282.66666666666669" y="-2.3333333333333712" width="46.333333333333314" height="34.333333333333336"/>
+                                                <rect key="frame" x="303.66666666666669" y="-2" width="46.333333333333314" height="34.333333333333336"/>
                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
@@ -77,17 +77,17 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK9-ck-u4v">
-                                        <rect key="frame" x="16" y="54" width="329" height="48"/>
+                                        <rect key="frame" x="16" y="54" width="350" height="48"/>
                                         <mutableString key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</mutableString>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="photo_2023-10-29_22-48-32" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-e0-6lu">
-                                        <rect key="frame" x="0.0" y="118" width="361" height="127"/>
+                                        <rect key="frame" x="0.0" y="118" width="382" height="127"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qzb-rU-o4w">
-                                        <rect key="frame" x="42" y="256.99999999999994" width="277" height="35"/>
+                                        <rect key="frame" x="52.666666666666686" y="257" width="277" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNM-fW-m19">
                                                 <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="35"/>
@@ -102,7 +102,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="clipboard" catalog="system"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDN-Ej-hSe">
-                                                <rect key="frame" x="184.66666666666666" y="0.0" width="92.333333333333343" height="35"/>
+                                                <rect key="frame" x="184.66666666666669" y="0.0" width="92.333333333333314" height="35"/>
                                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" title="Share"/>
@@ -140,6 +140,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9io-cx-zAC" secondAttribute="trailing" constant="16" id="ZQu-M4-1MN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bookmark" destination="2wN-gt-tqD" id="afc-QP-Bzm"/>
+                        <outlet property="comments" destination="r9K-lv-6XG" id="HP5-yt-CZL"/>
+                        <outlet property="domain" destination="3zM-FD-EFr" id="ODm-c8-X3g"/>
+                        <outlet property="image" destination="QkF-e0-6lu" id="aIx-VL-hgl"/>
+                        <outlet property="postTitle" destination="vK9-ck-u4v" id="uPY-MY-fwr"/>
+                        <outlet property="rating" destination="VNM-fW-m19" id="oOe-Pe-HHu"/>
+                        <outlet property="timePassed" destination="5HT-w3-36k" id="gsf-0b-rz9"/>
+                        <outlet property="username" destination="h66-ce-Efb" id="I6K-4m-NI3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,7 +160,7 @@
         <image name="arrowshape.up" catalog="system" width="123" height="128"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="clipboard" catalog="system" width="98" height="128"/>
-        <image name="photo_2023-10-29_22-48-32" width="1000" height="1000"/>
+        <image name="photo_2023-10-29_22-48-32" width="1104" height="736"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

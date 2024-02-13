@@ -7,15 +7,62 @@
 
 import Foundation
 
-let url = URL(string: "https://www.reddit.com/r/ios/top.json?limit=1")!
+let url = URL(string: "https://www.reddit.com/r/")!
 
-func fetchPost(by url: URL) async {
-    do {
-        let (data, _) = try await URLSession.shared.data(from: url)
-        print(data)
-        // more code to come
-    } catch {
-        print("Invalid data")
+
+func buildURL(urlBody: URL, subreddit: String = "ios", limit: Int = 1, after: Int = 0) -> URL {
+    let resUrl =  urlBody
+        .appending(path: subreddit)
+        .appending(path: "top.json")
+        .appending(queryItems: [
+            URLQueryItem(name: "limit", value: String(limit)),
+            URLQueryItem(name: "after", value: String(after))
+        ])
+    
+    print(resUrl)
+    
+    return resUrl
+}
+
+enum FetchError: Error {
+    case fail
+    case noData
+    case decodingFailed
+}
+
+func fetchPost(from url: URL, completionHandler: @escaping (Result<[Post], FetchError>) -> Void) -> Void {
+    let task = URLSession.shared.dataTask(with: url) {data, _, error in
+        
+        if let error {
+            completionHandler(.failure(.fail))
+            
+            return
+        }
+        
+        guard let data else {
+            completionHandler(.failure(.noData))
+
+            return
+        }
+
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+        guard let redditData = try? decoder.decode(RedditData.self, from: data)
+        else {
+            completionHandler(.failure(.decodingFailed))
+            
+            return
+        }
+        
+        print(redditData)
+        
+        completionHandler(.success(retrievePosts(from: redditData)))
     }
     
+    task.resume()
+}
+
+func retrievePosts(from data: RedditData) -> [Post] {
+    return data.data.children
 }
