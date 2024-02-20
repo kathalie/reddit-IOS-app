@@ -12,12 +12,20 @@ import UIKit
 
 class PostDetailsViewController: UIViewController {
     @IBOutlet weak var postView: PostView!
+    private var post: Post?
 
-    func config(with post: Post?) {
-        guard let post else {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        guard let post = self.post else {
             return
         }
-
+        
         self.postView.config(with: post)
+    }
+    
+    func config(with post: Post?) {
+        self.post = post
     }
 }

@@ -28,13 +28,13 @@ class PostListViewController: UITableViewController {
         switch segue.identifier {
         case Const.goToPostDetails:
             let nextVc = segue.destination as! PostDetailsViewController
-            DispatchQueue.main.async {
-                nextVc.config(with: self.lastSelectedPost)
-            }
+
+            nextVc.config(with: self.lastSelectedPost)
 
         default: break
         }
     }
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.posts.count
@@ -101,4 +101,5 @@ class PostListViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    
 }

@@ -83,12 +83,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="postView" destination="nQq-As-T0M" id="tgQ-pb-drU"/>
-                                    <segue destination="ZZW-P6-Diy" kind="show" identifier="go_to_post_details" id="sIS-F4-Bnt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="EeB-hd-lkH" id="X31-TQ-0Nq"/>
                             <outlet property="delegate" destination="EeB-hd-lkH" id="6jc-wG-346"/>
                         </connections>
                     </tableView>
@@ -96,6 +94,7 @@
                     <connections>
                         <outlet property="filterSavedButton" destination="Feb-aO-JvL" id="6bX-OJ-2EN"/>
                         <outlet property="subredditLabel" destination="qWT-U9-8wV" id="siv-6R-KcU"/>
+                        <segue destination="ZZW-P6-Diy" kind="show" identifier="go_to_post_details" id="wlE-xY-RqD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6UW-B6-k24" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
