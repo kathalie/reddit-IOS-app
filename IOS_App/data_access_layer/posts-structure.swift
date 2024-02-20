@@ -19,7 +19,8 @@ struct Preview: Decodable {
     let images: [Image]
 }
 
-struct PostContent: Decodable {
+struct Post: Decodable {
+    let name: String
     let author: String
     let domain: String
     let createdUtc: Int
@@ -27,16 +28,16 @@ struct PostContent: Decodable {
     let numComments: Int
     let ups: Int
     let downs: Int
-    let saved: Bool = Int.random(in: 0..<2) == 0 ? false : true
-    let preview: Preview
+    var saved: Bool = Int.random(in: 0..<2) == 0 ? false : true
+    let preview: Preview?
 }
 
-struct Post: Decodable {
-    let data: PostContent
+struct PostWrappper: Decodable {
+    let data: Post
 }
 
 struct Posts: Decodable {
-    let children: [Post]
+    let children: [PostWrappper]
 }
 
 struct RedditData: Decodable {

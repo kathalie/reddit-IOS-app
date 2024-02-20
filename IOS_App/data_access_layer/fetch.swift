@@ -10,13 +10,13 @@ import Foundation
 let url = URL(string: "https://www.reddit.com/r/")!
 
 
-func buildURL(urlBody: URL, subreddit: String = "ios", limit: Int = 1, after: Int = 0) -> URL {
+func buildURL(urlBody: URL, subreddit: String = "ios", limit: Int = 1, after: String = "") -> URL {
     let resUrl =  urlBody
         .appending(path: subreddit)
         .appending(path: "top.json")
         .appending(queryItems: [
             URLQueryItem(name: "limit", value: String(limit)),
-            URLQueryItem(name: "after", value: String(after))
+            URLQueryItem(name: "after", value: after)
         ])
     
     print(resUrl)
@@ -30,7 +30,7 @@ enum FetchError: Error {
     case decodingFailed
 }
 
-func fetchPost(from url: URL, completionHandler: @escaping (Result<[Post], FetchError>) -> Void) -> Void {
+func fetchPosts(from url: URL, completionHandler: @escaping (Result<[Post], FetchError>) -> Void) -> Void {
     let task = URLSession.shared.dataTask(with: url) {data, _, error in
         
         if let error {
@@ -55,7 +55,7 @@ func fetchPost(from url: URL, completionHandler: @escaping (Result<[Post], Fetch
             return
         }
         
-        print(redditData)
+        //print(redditData)
         
         completionHandler(.success(retrievePosts(from: redditData)))
     }
@@ -63,6 +63,6 @@ func fetchPost(from url: URL, completionHandler: @escaping (Result<[Post], Fetch
     task.resume()
 }
 
-func retrievePosts(from data: RedditData) -> [Post] {
-    return data.data.children
+fileprivate func retrievePosts(from data: RedditData) -> [Post] {
+    return data.data.children.map { $0.data }
 }

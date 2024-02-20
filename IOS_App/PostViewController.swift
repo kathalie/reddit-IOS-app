@@ -23,7 +23,7 @@ class PostViewController: UIViewController {
         
         let url = buildURL(urlBody: url)
         
-        fetchPost(from: url, completionHandler: {
+        fetchPosts(from: url, completionHandler: {
             switch $0 {
             case .success(let posts):
                 self.processPosts(posts)
@@ -34,13 +34,13 @@ class PostViewController: UIViewController {
     }
     
     private func processPosts(_ posts: [Post]) {
-        guard let post = posts.first?.data else {
+        guard let post = posts.first else {
             print("There are no posts fetched.")
             return
         }
 
         let passed = self.hoursPassed(Date.init(timeIntervalSince1970: Double(post.createdUtc)))
-        let imageURl = post.preview.images.first?.source.url.replacing("&amp;", with: "&")
+        let imageURl = post.preview?.images.first?.source.url.replacing("&amp;", with: "&")
 
         DispatchQueue.main.async {
             self.username.text = post.author
