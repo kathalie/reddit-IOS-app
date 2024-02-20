@@ -32,9 +32,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="1pH-Jw-YXc">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWT-U9-8wV" userLabel="SubReddit">
+                                    <rect key="frame" x="0.0" y="11.666666666666664" width="414" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Feb-aO-JvL" userLabel="FilterButton">
+                                    <rect key="frame" x="367.66666666666669" y="4.6666666666666679" width="46.333333333333314" height="35"/>
+                                    <color key="tintColor" systemColor="systemPinkColor"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Feb-aO-JvL" firstAttribute="centerY" secondItem="1pH-Jw-YXc" secondAttribute="centerY" id="Tep-UG-C5Q"/>
+                                <constraint firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" id="YvE-y0-Bdc"/>
+                                <constraint firstItem="qWT-U9-8wV" firstAttribute="centerY" secondItem="1pH-Jw-YXc" secondAttribute="centerY" id="jxd-in-rnC"/>
+                                <constraint firstItem="qWT-U9-8wV" firstAttribute="centerX" secondItem="1pH-Jw-YXc" secondAttribute="centerX" id="lxJ-fS-KVF"/>
+                                <constraint firstItem="qWT-U9-8wV" firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" id="pet-Vk-XD3"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post_cell" id="oWq-SQ-MIE" customClass="PostTableViewCell" customModule="IOS_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oWq-SQ-MIE" id="mhc-4h-zNM">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -57,6 +83,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="postView" destination="nQq-As-T0M" id="tgQ-pb-drU"/>
+                                    <segue destination="ZZW-P6-Diy" kind="show" identifier="go_to_post_details" id="sIS-F4-Bnt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -66,6 +93,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="2j2-2f-dlQ"/>
+                    <connections>
+                        <outlet property="filterSavedButton" destination="Feb-aO-JvL" id="6bX-OJ-2EN"/>
+                        <outlet property="subredditLabel" destination="qWT-U9-8wV" id="siv-6R-KcU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6UW-B6-k24" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-ES-fG5" customClass="PostView" customModule="IOS_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="xZK-Ii-5iq"/>
@@ -95,6 +126,10 @@
                             <constraint firstItem="tpo-ES-fG5" firstAttribute="trailing" secondItem="QBI-Vc-iGh" secondAttribute="trailing" id="g35-1H-foI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="6KQ-2a-Zod"/>
+                    <connections>
+                        <outlet property="postView" destination="tpo-ES-fG5" id="T3M-YC-6fy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mwv-CS-xGL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -102,8 +137,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bookmark" catalog="system" width="110" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -10,12 +10,31 @@ import UIKit
 class PostListViewController: UITableViewController {
     struct Const {
         static let cellReuseIdentifier = "post_cell"
-//        static let gotToHelloSegueID = "go_to_hello"
+        static let goToPostDetails = "go_to_post_details"
     }
+    @IBOutlet weak var subredditLabel: UILabel!
+    @IBOutlet weak var filterSavedButton: UIButton!
     
     private var posts: [Post] = []
-//    private var lastSelectedNumber: Int?
+    private var lastSelectedPost: Post?
     private var isLoadingData = false
+    
+    
+    override func viewDidLoad() {
+        self.subredditLabel.text = "r/ios"
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case Const.goToPostDetails:
+            let nextVc = segue.destination as! PostDetailsViewController
+            DispatchQueue.main.async {
+                nextVc.config(with: self.lastSelectedPost)
+            }
+
+        default: break
+        }
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.posts.count
@@ -36,6 +55,14 @@ class PostListViewController: UITableViewController {
         cell.config(with: post)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.lastSelectedPost = self.posts[indexPath.row]
+        self.performSegue(
+            withIdentifier: Const.goToPostDetails,
+            sender: nil
+        )
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {

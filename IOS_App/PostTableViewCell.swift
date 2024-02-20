@@ -12,13 +12,7 @@ final class PostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var postView: PostView!
     
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        self.cellLabel.text = "hi there"
-//    }
-    
     func config(with data: Post) {
         self.postView.config(with: data)
     }
 }
-
