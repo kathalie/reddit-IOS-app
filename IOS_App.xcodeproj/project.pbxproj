@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C201AFD2B83F25E0009FA2E /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C201AFC2B83F25E0009FA2E /* PostListViewController.swift */; };
+		8C201AFF2B8414B20009FA2E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C201AFE2B8414B20009FA2E /* PostTableViewCell.swift */; };
 		8C3479D82B7AF212008F1BD3 /* fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3479D72B7AF212008F1BD3 /* fetch.swift */; };
 		8C3479DD2B7BFDBE008F1BD3 /* posts-structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3479DC2B7BFDBE008F1BD3 /* posts-structure.swift */; };
 		8C3479E02B7C1502008F1BD3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8C3479DF2B7C1502008F1BD3 /* Kingfisher */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C201AFC2B83F25E0009FA2E /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
+		8C201AFE2B8414B20009FA2E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		8C3479D72B7AF212008F1BD3 /* fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetch.swift; sourceTree = "<group>"; };
 		8C3479DB2B7BF04A008F1BD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C3479DC2B7BFDBE008F1BD3 /* posts-structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "posts-structure.swift"; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 				8C92A5252B7824B90083C638 /* AppDelegate.swift */,
 				8C92A5272B7824B90083C638 /* SceneDelegate.swift */,
 				8C92A5292B7824B90083C638 /* PostViewController.swift */,
+				8C201AFC2B83F25E0009FA2E /* PostListViewController.swift */,
+				8C201AFE2B8414B20009FA2E /* PostTableViewCell.swift */,
 				8C92A52B2B7824B90083C638 /* Main.storyboard */,
 				8C92A52E2B7824BB0083C638 /* Assets.xcassets */,
 				8C92A5302B7824BB0083C638 /* LaunchScreen.storyboard */,
@@ -162,10 +168,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C201AFF2B8414B20009FA2E /* PostTableViewCell.swift in Sources */,
 				8C3479D82B7AF212008F1BD3 /* fetch.swift in Sources */,
 				8C92A52A2B7824B90083C638 /* PostViewController.swift in Sources */,
 				8C92A5262B7824B90083C638 /* AppDelegate.swift in Sources */,
 				8C3479DD2B7BFDBE008F1BD3 /* posts-structure.swift in Sources */,
+				8C201AFD2B83F25E0009FA2E /* PostListViewController.swift in Sources */,
 				8C92A5282B7824B90083C638 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
