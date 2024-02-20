@@ -17,7 +17,6 @@
 		8C77B6202B8519CE00200C0B /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C77B61F2B8519CE00200C0B /* PostDetailsViewController.swift */; };
 		8C92A5262B7824B90083C638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C92A5252B7824B90083C638 /* AppDelegate.swift */; };
 		8C92A5282B7824B90083C638 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C92A5272B7824B90083C638 /* SceneDelegate.swift */; };
-		8C92A52A2B7824B90083C638 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C92A5292B7824B90083C638 /* PostViewController.swift */; };
 		8C92A52D2B7824B90083C638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C92A52B2B7824B90083C638 /* Main.storyboard */; };
 		8C92A52F2B7824BB0083C638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C92A52E2B7824BB0083C638 /* Assets.xcassets */; };
 		8C92A5322B7824BB0083C638 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C92A5302B7824BB0083C638 /* LaunchScreen.storyboard */; };
@@ -35,7 +34,6 @@
 		8C92A5222B7824B90083C638 /* IOS_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C92A5252B7824B90083C638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C92A5272B7824B90083C638 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8C92A5292B7824B90083C638 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		8C92A52C2B7824B90083C638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C92A52E2B7824BB0083C638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C92A5312B7824BB0083C638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +61,15 @@
 			path = data_access_layer;
 			sourceTree = "<group>";
 		};
+		8C77B6212B852C2300200C0B /* PostView */ = {
+			isa = PBXGroup;
+			children = (
+				8C201B002B84FE580009FA2E /* PostView.swift */,
+				8C201B042B84FF340009FA2E /* PostView.xib */,
+			);
+			path = PostView;
+			sourceTree = "<group>";
+		};
 		8C92A5192B7824B90083C638 = {
 			isa = PBXGroup;
 			children = (
@@ -82,10 +89,10 @@
 		8C92A5242B7824B90083C638 /* IOS_App */ = {
 			isa = PBXGroup;
 			children = (
+				8C77B6212B852C2300200C0B /* PostView */,
 				8C3479D62B7AF1F1008F1BD3 /* data_access_layer */,
 				8C92A5252B7824B90083C638 /* AppDelegate.swift */,
 				8C92A5272B7824B90083C638 /* SceneDelegate.swift */,
-				8C92A5292B7824B90083C638 /* PostViewController.swift */,
 				8C201AFC2B83F25E0009FA2E /* PostListViewController.swift */,
 				8C201AFE2B8414B20009FA2E /* PostTableViewCell.swift */,
 				8C92A52B2B7824B90083C638 /* Main.storyboard */,
@@ -93,8 +100,6 @@
 				8C92A5302B7824BB0083C638 /* LaunchScreen.storyboard */,
 				8C92A5332B7824BB0083C638 /* Info.plist */,
 				8C3479DB2B7BF04A008F1BD3 /* README.md */,
-				8C201B002B84FE580009FA2E /* PostView.swift */,
-				8C201B042B84FF340009FA2E /* PostView.xib */,
 				8C77B61F2B8519CE00200C0B /* PostDetailsViewController.swift */,
 			);
 			path = IOS_App;
@@ -182,7 +187,6 @@
 				8C3479D82B7AF212008F1BD3 /* fetch.swift in Sources */,
 				8C201B012B84FE580009FA2E /* PostView.swift in Sources */,
 				8C77B6202B8519CE00200C0B /* PostDetailsViewController.swift in Sources */,
-				8C92A52A2B7824B90083C638 /* PostViewController.swift in Sources */,
 				8C92A5262B7824B90083C638 /* AppDelegate.swift in Sources */,
 				8C3479DD2B7BFDBE008F1BD3 /* posts-structure.swift in Sources */,
 				8C201AFD2B83F25E0009FA2E /* PostListViewController.swift in Sources */,
