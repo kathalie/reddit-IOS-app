@@ -175,32 +175,35 @@
         <scene sceneID="eyW-1W-QnU">
             <objects>
                 <tableViewController id="EeB-hd-lkH" customClass="PostListViewController" customModule="IOS_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="O3p-Zg-2NP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="O3p-Zg-2NP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post_cell" id="oWq-SQ-MIE" customClass="PostTableViewCell" customModule="IOS_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="414" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oWq-SQ-MIE" id="mhc-4h-zNM">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUj-ca-7s9">
-                                            <rect key="frame" x="79" y="22" width="42" height="11"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-As-T0M" customClass="PostView" customModule="IOS_App" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="300" id="LWD-1B-k14"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="tUj-ca-7s9" firstAttribute="centerX" secondItem="mhc-4h-zNM" secondAttribute="centerX" id="9RZ-fn-QNy"/>
-                                        <constraint firstItem="tUj-ca-7s9" firstAttribute="centerY" secondItem="mhc-4h-zNM" secondAttribute="centerY" id="zPe-2I-InJ"/>
+                                        <constraint firstItem="nQq-As-T0M" firstAttribute="leading" secondItem="mhc-4h-zNM" secondAttribute="leading" id="1zV-Ez-ABa"/>
+                                        <constraint firstItem="nQq-As-T0M" firstAttribute="centerX" secondItem="mhc-4h-zNM" secondAttribute="centerX" id="BtY-Z7-5LZ"/>
+                                        <constraint firstItem="nQq-As-T0M" firstAttribute="centerY" secondItem="mhc-4h-zNM" secondAttribute="centerY" id="GQ1-np-OqQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="nQq-As-T0M" secondAttribute="trailing" id="Oac-hS-9E4"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cellLabel" destination="tUj-ca-7s9" id="ch9-Iq-3vA"/>
+                                    <outlet property="postView" destination="nQq-As-T0M" id="tgQ-pb-drU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -215,6 +218,35 @@
             </objects>
             <point key="canvasLocation" x="1124.6376811594205" y="-729.24107142857144"/>
         </scene>
+        <!--Post Details View Controller-->
+        <scene sceneID="fVh-QG-4QK">
+            <objects>
+                <viewController id="ZZW-P6-Diy" customClass="PostDetailsViewController" customModule="IOS_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QQR-jF-m5X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-ES-fG5" customClass="PostView" customModule="IOS_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="xZK-Ii-5iq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QBI-Vc-iGh"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tpo-ES-fG5" firstAttribute="leading" secondItem="QBI-Vc-iGh" secondAttribute="leading" id="Ko1-BP-2TE"/>
+                            <constraint firstItem="tpo-ES-fG5" firstAttribute="top" secondItem="QBI-Vc-iGh" secondAttribute="top" id="VMM-cu-xFx"/>
+                            <constraint firstItem="tpo-ES-fG5" firstAttribute="trailing" secondItem="QBI-Vc-iGh" secondAttribute="trailing" id="g35-1H-foI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mwv-CS-xGL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2193" y="-729"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrowshape.up" catalog="system" width="123" height="128"/>
@@ -226,13 +258,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

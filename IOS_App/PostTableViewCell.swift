@@ -10,16 +10,15 @@ import UIKit
 
 final class PostTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var cellLabel: UILabel!
-
-//    // MARK: - Lifecycle
+    @IBOutlet weak var postView: PostView!
+    
 //    override func prepareForReuse() {
 //        super.prepareForReuse()
 //        self.cellLabel.text = "hi there"
 //    }
     
     func config(with data: Post) {
-        self.cellLabel.text = data.title
+        self.postView.config(with: data)
     }
 }
 

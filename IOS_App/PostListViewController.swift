@@ -14,7 +14,7 @@ class PostListViewController: UITableViewController {
     }
     
     private var posts: [Post] = []
-    private var lastSelectedNumber: Int?
+//    private var lastSelectedNumber: Int?
     private var isLoadingData = false
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,7 +31,6 @@ class PostListViewController: UITableViewController {
         
         
         print("\(indexPath.row) : PRINTED : \(post.title)") // TODO remove
-        
         
         
         cell.config(with: post)
