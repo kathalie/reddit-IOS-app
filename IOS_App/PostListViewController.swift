@@ -18,10 +18,34 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     private var posts: [Post] = []
     private var lastSelectedPost: Post?
     private var isLoadingData = false
+    private var onlySavedPosts = false
     
     
     override func viewDidLoad() {
         self.subredditLabel.text = "r/ios"
+        
+        self.filterSavedButton.addTarget(
+            self,
+            action: #selector(handleSavedFiltering),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc
+    func handleSavedFiltering() {
+        self.onlySavedPosts = !self.onlySavedPosts
+        
+        setSaveButtonImage(for: self.filterSavedButton, isSaved: self.onlySavedPosts)
+        
+        if self.onlySavedPosts {
+            self.posts = PostSavingManager.readAll()
+        }
+        else {
+            self.posts = []
+            self.processPostsFetch()
+        }
+        
+        self.tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,18 +87,21 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.onlySavedPosts {
+            return
+        }
+        
         let contentSizeHeight = tableView.contentSize.height
         let scrollThreshold = contentSizeHeight - tableView.bounds.size.height
 
         if scrollView.contentOffset.y > scrollThreshold && !isLoadingData {
             isLoadingData = true
             
-            self.processPostsFetch(count: 20, after: self.posts.last?.name ?? "")
+            self.processPostsFetch(after: self.posts.last?.name ?? "")
         }
     }
     
-    
-    private func processPostsFetch(count n: Int, after name: String = "") {
+    private func processPostsFetch(count n: Int = 20, after name: String = "") {
         let url = buildURL(urlBody: baseRedditUrl, limit: n, after: name)
         
         fetchPosts(from: url, completionHandler: {
@@ -102,4 +129,5 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     func updatePosts() {
         self.tableView.reloadData()
     }
+
 }

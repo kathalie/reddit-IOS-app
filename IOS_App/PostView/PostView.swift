@@ -56,7 +56,10 @@ class PostView: UIView {
         self.domainLabel.text = post.domain
         self.ratingButton.setTitle("\(post.ups + post.downs)", for: .normal)
         self.commentsButton.setTitle("\(post.numComments)", for: .normal)
-        self.image.kf.setImage(with: URL(string: imageURl ?? ""), placeholder: UIImage(named: "photo_2023-10-29_22-48-32"))
+        self.image.kf.setImage(
+            with: URL(string: imageURl ?? ""),
+            placeholder: UIImage(named: "photo_2023-10-29_22-48-32")
+        )
         
         self.updateSaveButtonImage(for: post)
         
@@ -72,9 +75,7 @@ class PostView: UIView {
     }
     
     func updateSaveButtonImage(for post: Post) {
-        self.saveButton.setImage(
-            post.isSaved() ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"),
-             for: .normal)
+        setSaveButtonImage(for: self.saveButton, isSaved: post.isSaved())
     }
     
     @objc
