@@ -13,7 +13,6 @@ final class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postView: PostView!
     
     func config(with data: Post, postDelegate: PostViewDelegate) {
-        self.postView.postViewDelegate = postDelegate
-        self.postView.config(with: data)
+        self.postView.config(with: data, delegate: postDelegate)
     }
 }

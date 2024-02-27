@@ -29,7 +29,7 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         case Const.goToPostDetails:
             let nextVc = segue.destination as! PostDetailsViewController
 
-            nextVc.config(with: self.lastSelectedPost)
+            nextVc.config(with: self.lastSelectedPost, updateTableDelegate: self)
 
         default: break
         }
@@ -99,4 +99,7 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         }
     }
     
+    func updatePosts() {
+        self.tableView.reloadData()
+    }
 }

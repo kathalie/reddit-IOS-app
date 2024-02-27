@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct Source: Decodable {
+struct Source: Codable {
     let url: String
 }
 
-struct Image: Decodable {
+struct Image: Codable {
     let source: Source
 }
 
-struct Preview: Decodable {
+struct Preview: Codable {
     let images: [Image]
 }
 
-struct Post: Decodable {
+struct Post: Codable {
     let permalink: String
     let name: String
     let author: String
@@ -29,18 +29,23 @@ struct Post: Decodable {
     let numComments: Int
     let ups: Int
     let downs: Int
-    var saved: Bool = Int.random(in: 0..<2) == 0 ? false : true
     let preview: Preview?
 }
 
-struct PostWrappper: Decodable {
-    var data: Post
+struct PostWrappper: Codable {
+    let data: Post
 }
 
-struct Posts: Decodable {
+struct Posts: Codable {
     let children: [PostWrappper]
 }
 
-struct RedditData: Decodable {
+struct RedditData: Codable {
     let data: Posts
+}
+
+extension Post {
+    func isSaved() -> Bool {
+        return PostSavingManager.isSaved(postName: self.name)
+    }
 }

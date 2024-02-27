@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class PostView: UIView {
-    weak var postViewDelegate: PostViewDelegate?
+    private weak var postViewDelegate: PostViewDelegate?
     
     let kCONTENT_XIB_NAME = "PostView"
     
@@ -25,7 +25,7 @@ class PostView: UIView {
     @IBOutlet weak var commentsButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
-    var postUrl: URL?
+    var post: Post?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +43,10 @@ class PostView: UIView {
     }
     
     
-    func config(with post: Post) {
+    func config(with post: Post, delegate: PostViewDelegate?) {
+        self.post = post
+        self.postViewDelegate = delegate
+        
         let passed = self.hoursPassed(Date.init(timeIntervalSince1970: Double(post.createdUtc)))
         let imageURl = post.preview?.images.first?.source.url.replacing("&amp;", with: "&")
         
@@ -51,31 +54,52 @@ class PostView: UIView {
         self.titleLabel.text = post.title
         self.timeLabel.text = passed
         self.domainLabel.text = post.domain
-        self.saveButton.setImage(
-            post.saved ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"),
-             for: .normal)
         self.ratingButton.setTitle("\(post.ups + post.downs)", for: .normal)
         self.commentsButton.setTitle("\(post.numComments)", for: .normal)
         self.image.kf.setImage(with: URL(string: imageURl ?? ""), placeholder: UIImage(named: "photo_2023-10-29_22-48-32"))
         
-        self.postUrl = URL(string: "\(baseRedditUrl)\(post.permalink)")
+        self.updateSaveButtonImage(for: post)
         
         self.shareButton.addTarget(
             self,
             action: #selector(self.handleSharing),
             for: .touchUpInside)
+        
+        self.saveButton.addTarget(
+            self,
+            action: #selector(self.handleSaving),
+            for: .touchUpInside)
+    }
+    
+    func updateSaveButtonImage(for post: Post) {
+        self.saveButton.setImage(
+            post.isSaved() ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"),
+             for: .normal)
     }
     
     @objc
     func handleSharing() {
         guard
             let postViewDelegate = self.postViewDelegate,
-            let postUrl = self.postUrl
+            let post = self.post,
+            let postUrl = URL(string: "\(baseRedditUrl)\(post.permalink)")
         else {
             return
         }
         
         postViewDelegate.sharePost(url: postUrl)
+    }
+    
+    @objc
+    func handleSaving() {
+        guard
+            let postViewDelegate = self.postViewDelegate,
+            let post = self.post
+        else {
+            return
+        }
+        
+        postViewDelegate.toggleSavePost(post)
     }
     
     private func hoursPassed(_ createdDate: Date) -> String {

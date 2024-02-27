@@ -10,6 +10,8 @@ import UIKit
 
 protocol PostViewDelegate: UIViewController {
     func sharePost(url: URL)
+    func toggleSavePost(_ post: Post)
+    func updatePosts()
 }
 
 extension PostViewDelegate {
@@ -17,5 +19,16 @@ extension PostViewDelegate {
         let ac = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         
         present(ac, animated: true)
+    }
+    
+    func toggleSavePost(_ post: Post) {
+        let success = post.isSaved() 
+        ? PostSavingManager.delete(post)
+        : PostSavingManager.save(post)
+        
+        print(success ? "Posts updated" : "Failed to update posts")
+        print("Current posts count: \(PostSavingManager.readAll().count)")
+        
+        self.updatePosts()
     }
 }

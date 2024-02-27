@@ -12,8 +12,9 @@ import UIKit
 
 class PostDetailsViewController: UIViewController, PostViewDelegate {
     @IBOutlet weak var postView: PostView!
+    private var updateTableDelegate: PostListViewController?
     private var post: Post?
-
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +23,21 @@ class PostDetailsViewController: UIViewController, PostViewDelegate {
             return
         }
         
-        self.postView.postViewDelegate = self
-        self.postView.config(with: post)
+        self.postView.config(with: post, delegate: self)
     }
     
-    func config(with post: Post?) {
+    func config(with post: Post?, updateTableDelegate: PostListViewController) {
         self.post = post
+        self.updateTableDelegate = updateTableDelegate
+    }
+    
+    func updatePosts() {
+        self.updateTableDelegate?.updatePosts()
+        
+        guard let post = self.post else {
+            return
+        }
+        
+        self.postView.updateSaveButtonImage(for: post)
     }
 }
