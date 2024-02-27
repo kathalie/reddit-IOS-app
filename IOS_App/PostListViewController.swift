@@ -14,11 +14,17 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     }
     @IBOutlet weak var subredditLabel: UILabel!
     @IBOutlet weak var filterSavedButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     private var posts: [Post] = []
     private var lastSelectedPost: Post?
     private var isLoadingData = false
     private var onlySavedPosts = false
+    private var searchQuery = "" {
+        didSet {
+            self.posts = PostSavingManager.readAll().filter{$0.title.hasPrefix(searchQuery)}
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -29,6 +35,8 @@ class PostListViewController: UITableViewController, PostViewDelegate {
             action: #selector(handleSavedFiltering),
             for: .touchUpInside
         )
+        
+        self.searchBar.isHidden = true
     }
     
     @objc
@@ -38,12 +46,16 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         setSaveButtonImage(for: self.filterSavedButton, isSaved: self.onlySavedPosts)
         
         if self.onlySavedPosts {
+            self.searchBar.isHidden = false
             self.posts = PostSavingManager.readAll()
         }
         else {
+            self.searchBar.isHidden = true
             self.posts = []
             self.processPostsFetch()
         }
+        
+        
         
         self.tableView.reloadData()
     }
@@ -130,4 +142,13 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         self.tableView.reloadData()
     }
 
+}
+
+
+
+extension PostListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchQuery = searchText
+        self.tableView.reloadData()
+    }
 }

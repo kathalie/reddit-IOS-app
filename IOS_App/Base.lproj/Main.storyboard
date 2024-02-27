@@ -42,6 +42,13 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Ahd-jR-e1V">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="EeB-hd-lkH" id="ABt-4D-7RP"/>
+                                    </connections>
+                                </searchBar>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Feb-aO-JvL" userLabel="FilterButton">
                                     <rect key="frame" x="367.66666666666669" y="4.6666666666666679" width="46.333333333333314" height="35"/>
                                     <color key="tintColor" systemColor="systemPinkColor"/>
@@ -51,11 +58,15 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="Ahd-jR-e1V" firstAttribute="leading" secondItem="1pH-Jw-YXc" secondAttribute="leading" id="Cuv-Oy-0pB"/>
+                                <constraint firstItem="Ahd-jR-e1V" firstAttribute="top" secondItem="1pH-Jw-YXc" secondAttribute="top" id="Sim-bb-B8b"/>
                                 <constraint firstItem="Feb-aO-JvL" firstAttribute="centerY" secondItem="1pH-Jw-YXc" secondAttribute="centerY" id="Tep-UG-C5Q"/>
                                 <constraint firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" id="YvE-y0-Bdc"/>
                                 <constraint firstItem="qWT-U9-8wV" firstAttribute="centerY" secondItem="1pH-Jw-YXc" secondAttribute="centerY" id="jxd-in-rnC"/>
                                 <constraint firstItem="qWT-U9-8wV" firstAttribute="centerX" secondItem="1pH-Jw-YXc" secondAttribute="centerX" id="lxJ-fS-KVF"/>
                                 <constraint firstItem="qWT-U9-8wV" firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" id="pet-Vk-XD3"/>
+                                <constraint firstItem="Ahd-jR-e1V" firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" id="wlR-zw-ATL"/>
+                                <constraint firstAttribute="bottom" secondItem="Ahd-jR-e1V" secondAttribute="bottom" constant="8" id="ytz-f9-qPU"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -93,6 +104,7 @@
                     <navigationItem key="navigationItem" id="2j2-2f-dlQ"/>
                     <connections>
                         <outlet property="filterSavedButton" destination="Feb-aO-JvL" id="6bX-OJ-2EN"/>
+                        <outlet property="searchBar" destination="Ahd-jR-e1V" id="9wo-KI-sc5"/>
                         <outlet property="subredditLabel" destination="qWT-U9-8wV" id="siv-6R-KcU"/>
                         <segue destination="ZZW-P6-Diy" kind="show" identifier="go_to_post_details" id="wlE-xY-RqD"/>
                     </connections>
