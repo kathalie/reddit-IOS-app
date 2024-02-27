@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PostListViewController: UITableViewController {
+class PostListViewController: UITableViewController, PostViewDelegate {
     struct Const {
         static let cellReuseIdentifier = "post_cell"
         static let goToPostDetails = "go_to_post_details"
@@ -47,12 +47,9 @@ class PostListViewController: UITableViewController {
         ) as! PostTableViewCell
         let post = posts[indexPath.row]
         
-        
-        
         print("\(indexPath.row) : PRINTED : \(post.title)") // TODO remove
         
-        
-        cell.config(with: post)
+        cell.config(with: post, postDelegate: self)
         
         return cell
     }
@@ -78,7 +75,7 @@ class PostListViewController: UITableViewController {
     
     
     private func processPostsFetch(count n: Int, after name: String = "") {
-        let url = buildURL(urlBody: url, limit: n, after: name)
+        let url = buildURL(urlBody: baseRedditUrl, limit: n, after: name)
         
         fetchPosts(from: url, completionHandler: {
             switch $0 {

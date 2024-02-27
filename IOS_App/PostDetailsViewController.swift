@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-class PostDetailsViewController: UIViewController {
+class PostDetailsViewController: UIViewController, PostViewDelegate {
     @IBOutlet weak var postView: PostView!
     private var post: Post?
 
@@ -22,6 +22,7 @@ class PostDetailsViewController: UIViewController {
             return
         }
         
+        self.postView.postViewDelegate = self
         self.postView.config(with: post)
     }
     

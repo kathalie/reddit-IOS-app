@@ -7,10 +7,10 @@
 
 import Foundation
 
-let url = URL(string: "https://www.reddit.com/r/")!
+let baseRedditUrl = URL(string: "https://www.reddit.com")!
 
 
-func buildURL(urlBody: URL, subreddit: String = "ios", limit: Int = 1, after: String = "") -> URL {
+func buildURL(urlBody: URL, subreddit: String = "/r/ios", limit: Int = 1, after: String = "") -> URL {
     let resUrl =  urlBody
         .appending(path: subreddit)
         .appending(path: "top.json")

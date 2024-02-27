@@ -20,6 +20,7 @@ struct Preview: Decodable {
 }
 
 struct Post: Decodable {
+    let permalink: String
     let name: String
     let author: String
     let domain: String
@@ -33,7 +34,7 @@ struct Post: Decodable {
 }
 
 struct PostWrappper: Decodable {
-    let data: Post
+    var data: Post
 }
 
 struct Posts: Decodable {
