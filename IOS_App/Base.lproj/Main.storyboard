@@ -37,20 +37,20 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWT-U9-8wV" userLabel="SubReddit">
-                                    <rect key="frame" x="0.0" y="11.666666666666664" width="414" height="21"/>
+                                    <rect key="frame" x="186.33333333333334" y="11.666666666666664" width="41.333333333333343" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Ahd-jR-e1V">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+                                    <rect key="frame" x="8" y="8" width="351.66666666666669" height="28"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
                                         <outlet property="delegate" destination="EeB-hd-lkH" id="ABt-4D-7RP"/>
                                     </connections>
                                 </searchBar>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Feb-aO-JvL" userLabel="FilterButton">
-                                    <rect key="frame" x="367.66666666666669" y="4.6666666666666679" width="46.333333333333314" height="35"/>
+                                    <rect key="frame" x="359.66666666666669" y="4.6666666666666679" width="46.333333333333314" height="35"/>
                                     <color key="tintColor" systemColor="systemPinkColor"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
@@ -58,14 +58,13 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="Ahd-jR-e1V" firstAttribute="leading" secondItem="1pH-Jw-YXc" secondAttribute="leading" id="Cuv-Oy-0pB"/>
-                                <constraint firstItem="Ahd-jR-e1V" firstAttribute="top" secondItem="1pH-Jw-YXc" secondAttribute="top" id="Sim-bb-B8b"/>
+                                <constraint firstItem="Ahd-jR-e1V" firstAttribute="leading" secondItem="1pH-Jw-YXc" secondAttribute="leading" constant="8" id="Cuv-Oy-0pB"/>
+                                <constraint firstItem="Ahd-jR-e1V" firstAttribute="top" secondItem="1pH-Jw-YXc" secondAttribute="top" constant="8" id="Sim-bb-B8b"/>
                                 <constraint firstItem="Feb-aO-JvL" firstAttribute="centerY" secondItem="1pH-Jw-YXc" secondAttribute="centerY" id="Tep-UG-C5Q"/>
-                                <constraint firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" id="YvE-y0-Bdc"/>
+                                <constraint firstItem="Feb-aO-JvL" firstAttribute="leading" secondItem="Ahd-jR-e1V" secondAttribute="trailing" id="WvE-yo-1DW"/>
+                                <constraint firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" constant="8" id="YvE-y0-Bdc"/>
                                 <constraint firstItem="qWT-U9-8wV" firstAttribute="centerY" secondItem="1pH-Jw-YXc" secondAttribute="centerY" id="jxd-in-rnC"/>
                                 <constraint firstItem="qWT-U9-8wV" firstAttribute="centerX" secondItem="1pH-Jw-YXc" secondAttribute="centerX" id="lxJ-fS-KVF"/>
-                                <constraint firstItem="qWT-U9-8wV" firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" id="pet-Vk-XD3"/>
-                                <constraint firstItem="Ahd-jR-e1V" firstAttribute="trailing" secondItem="Feb-aO-JvL" secondAttribute="trailing" id="wlR-zw-ATL"/>
                                 <constraint firstAttribute="bottom" secondItem="Ahd-jR-e1V" secondAttribute="bottom" constant="8" id="ytz-f9-qPU"/>
                             </constraints>
                         </view>

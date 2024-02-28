@@ -50,6 +50,7 @@ class PostListViewController: UITableViewController, PostViewDelegate {
             self.posts = PostSavingManager.readAll()
         }
         else {
+            self.searchBar.text = ""
             self.searchBar.isHidden = true
             self.posts = []
             self.processPostsFetch()
