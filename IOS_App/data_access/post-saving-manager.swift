@@ -40,13 +40,21 @@ class PostSavingManager {
             return false
         }
         
-        savedPosts.append(post)
+        savedPosts.insert(post, by: {$0.createdUtc < $1.createdUtc})
         
         write(savedPosts)
         
         return true
     }
 
+    private static func insert(_ post: Post, in posts: inout [Post]) {
+        if let index = posts.firstIndex(where: { $0.createdUtc >= post.createdUtc }) {
+            posts.insert(post, at: index)
+        } else {
+            posts.append(post)
+        }
+    }
+    
     static func delete(_ post: Post) -> Bool {
         var savedPosts = readAll()
         
