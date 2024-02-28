@@ -22,7 +22,11 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     private var onlySavedPosts = false
     private var searchQuery = "" {
         didSet {
-            self.posts = PostSavingManager.readAll().filter{$0.title.hasPrefix(searchQuery)}
+            let savedPosts = PostSavingManager.readAll()
+            self.posts = 
+                searchQuery.isEmpty ?
+                savedPosts :
+                savedPosts.filter{$0.title.lowercased().contains(searchQuery.lowercased())}
         }
     }
     
