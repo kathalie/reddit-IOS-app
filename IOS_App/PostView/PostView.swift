@@ -9,6 +9,11 @@ import UIKit
 import Kingfisher
 
 class PostView: UIView {
+    enum Const {
+        static let bookmarkWidth = 30.0
+        static let bookmarkHeight = 50.0
+    }
+    
     private weak var postViewDelegate: PostViewDelegate?
     
     let kCONTENT_XIB_NAME = "PostView"
@@ -24,6 +29,7 @@ class PostView: UIView {
     @IBOutlet weak var ratingButton: UIButton!
     @IBOutlet weak var commentsButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var animatedBookmark: UIView!
     
     var post: Post?
     
@@ -72,6 +78,9 @@ class PostView: UIView {
             self,
             action: #selector(self.handleSaving),
             for: .touchUpInside)
+        
+        self.drawAnimatedBookmark()
+        self.placeAnimatedBookmark()
     }
     
     func updateSaveButtonImage(for post: Post) {
@@ -101,6 +110,54 @@ class PostView: UIView {
         }
         
         postViewDelegate.toggleSavePost(post)
+    }
+    
+    private func placeAnimatedBookmark() {
+        self.animatedBookmark.frame.origin = CGPoint(
+            x: self.image.center.x - Const.bookmarkWidth / 2,
+            y: self.image.center.y - Const.bookmarkHeight / 2)
+        self.animatedBookmark.isHidden = false
+    }
+    
+    private func drawAnimatedBookmark() {
+        self.animatedBookmark.layer.sublayers?.forEach{$0.removeFromSuperlayer()}
+        
+        self.animatedBookmark.frame.size = CGSize(width: Const.bookmarkWidth, height: Const.bookmarkHeight)
+        
+        let path = UIBezierPath()
+//        path.move(to: CGPoint(x: 0.0, y: 0.0))
+//        path.addLine(to: CGPoint(x: Const.bookmarkWidth, y: 0.0))
+//        path.addLine(to: CGPoint(x: Const.bookmarkWidth, y: Const.bookmarkHeight))
+//        path.addLine(to: CGPoint(x: Const.bookmarkWidth / 2, y: 2 * Const.bookmarkHeight / 3))
+//        path.addLine(to: CGPoint(x: 0.0, y: Const.bookmarkHeight))
+//        path.addLine(to: CGPoint(x: 0.0, y: 0.0))
+        let cornerRadius = 5.0
+        
+        path.move(to: CGPoint(x: 0.0, y: Const.bookmarkHeight))
+        path.addArc(
+            withCenter: CGPoint(x: cornerRadius, y: cornerRadius),
+            radius: cornerRadius,
+            startAngle: CGFloat.pi,
+            endAngle: 3 * CGFloat.pi / 2,
+            clockwise: true)
+//        path.addLine(to: CGPoint(x: Const.bookmarkWidth - cornerRadius, y: 0.0))
+        path.addArc(
+            withCenter: CGPoint(x: Const.bookmarkWidth - cornerRadius, y: cornerRadius),
+            radius: cornerRadius,
+            startAngle: 3 * CGFloat.pi / 2,
+            endAngle: 0,
+            clockwise: true)
+        path.addLine(to: CGPoint(x: Const.bookmarkWidth, y: Const.bookmarkHeight))
+        path.addLine(to: CGPoint(x: Const.bookmarkWidth / 2, y: 2 * Const.bookmarkHeight / 3))
+        path.addLine(to: CGPoint(x: 0.0, y: Const.bookmarkHeight))
+        path.close()
+        
+        let shape = CAShapeLayer()
+        shape.path = path.cgPath
+        shape.fillColor = UIColor.systemPink.cgColor
+        shape.lineWidth = 0
+        
+        self.animatedBookmark.layer.addSublayer(shape)
     }
     
     private func hoursPassed(_ createdDate: Date) -> String {

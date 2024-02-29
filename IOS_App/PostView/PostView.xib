@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostView" customModule="IOS_App" customModuleProvider="target">
             <connections>
+                <outlet property="animatedBookmark" destination="iHX-ZH-04U" id="lfz-9V-C6x"/>
                 <outlet property="commentsButton" destination="C4f-Up-8hf" id="1us-Sg-Yql"/>
                 <outlet property="domainLabel" destination="gj1-fz-M5h" id="Q5o-7f-rmA"/>
                 <outlet property="image" destination="0y8-xd-xSm" id="DJ8-LI-UAK"/>
@@ -97,6 +98,10 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="photo_2023-10-29_22-48-32" translatesAutoresizingMaskIntoConstraints="NO" id="0y8-xd-xSm">
                             <rect key="frame" x="0.0" y="118" width="361" height="127"/>
                         </imageView>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHX-ZH-04U" userLabel="Bookmark animated">
+                            <rect key="frame" x="60" y="85.333333333333258" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </view>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vQa-FK-u6l">
                             <rect key="frame" x="42" y="256.99999999999994" width="277" height="35"/>
                             <subviews>
