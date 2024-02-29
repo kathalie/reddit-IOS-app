@@ -125,12 +125,7 @@ class PostView: UIView {
         self.animatedBookmark.frame.size = CGSize(width: Const.bookmarkWidth, height: Const.bookmarkHeight)
         
         let path = UIBezierPath()
-//        path.move(to: CGPoint(x: 0.0, y: 0.0))
-//        path.addLine(to: CGPoint(x: Const.bookmarkWidth, y: 0.0))
-//        path.addLine(to: CGPoint(x: Const.bookmarkWidth, y: Const.bookmarkHeight))
-//        path.addLine(to: CGPoint(x: Const.bookmarkWidth / 2, y: 2 * Const.bookmarkHeight / 3))
-//        path.addLine(to: CGPoint(x: 0.0, y: Const.bookmarkHeight))
-//        path.addLine(to: CGPoint(x: 0.0, y: 0.0))
+
         let cornerRadius = 5.0
         
         path.move(to: CGPoint(x: 0.0, y: Const.bookmarkHeight))
@@ -140,7 +135,6 @@ class PostView: UIView {
             startAngle: CGFloat.pi,
             endAngle: 3 * CGFloat.pi / 2,
             clockwise: true)
-//        path.addLine(to: CGPoint(x: Const.bookmarkWidth - cornerRadius, y: 0.0))
         path.addArc(
             withCenter: CGPoint(x: Const.bookmarkWidth - cornerRadius, y: cornerRadius),
             radius: cornerRadius,
