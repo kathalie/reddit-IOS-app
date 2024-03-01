@@ -130,11 +130,11 @@ class PostView: UIView {
         
         self.playBookmarkAnimation(sender)
         
-//        if let postViewDelegate = self.postViewDelegate, let post {
-//            if !post.isSaved() {
-//                postViewDelegate.toggleSavePost(post)
-//            }
-//        }
+        if let postViewDelegate = self.postViewDelegate, let post {
+            if !post.isSaved() {
+                postViewDelegate.toggleSavePost(post)
+            }
+        }
     }
     
     private func playBookmarkAnimation(_ sender: UITapGestureRecognizer) {
