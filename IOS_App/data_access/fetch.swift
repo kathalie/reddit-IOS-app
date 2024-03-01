@@ -33,7 +33,7 @@ enum FetchError: Error {
 func fetchPosts(from url: URL, completionHandler: @escaping (Result<[Post], FetchError>) -> Void) -> Void {
     let task = URLSession.shared.dataTask(with: url) {data, _, error in
         
-        if let error {
+        if let _ = error {
             completionHandler(.failure(.fail))
             
             return
