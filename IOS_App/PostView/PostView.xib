@@ -98,7 +98,7 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="photo_2023-10-29_22-48-32" translatesAutoresizingMaskIntoConstraints="NO" id="0y8-xd-xSm">
                             <rect key="frame" x="0.0" y="118" width="361" height="127"/>
                         </imageView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHX-ZH-04U" userLabel="Bookmark animated">
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHX-ZH-04U" userLabel="Bookmark animated">
                             <rect key="frame" x="60" y="85.333333333333258" width="240" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </view>

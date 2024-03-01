@@ -12,6 +12,10 @@ class PostView: UIView {
     enum Const {
         static let bookmarkWidth = 30.0
         static let bookmarkHeight = 50.0
+        static let bookmarkAnimationName = "bookmark_animation"
+        static let timeToAppear = 0.4
+        static let timeToBecomeStable = 0.4
+        static let timeToDisappear = 0.4
     }
     
     private weak var postViewDelegate: PostViewDelegate?
@@ -31,7 +35,8 @@ class PostView: UIView {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var animatedBookmark: UIView!
     
-    var post: Post?
+    private var post: Post?
+    private var bookmarkAnimationCompleted: Bool = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,8 +84,13 @@ class PostView: UIView {
             action: #selector(self.handleSaving),
             for: .touchUpInside)
         
+        let doubleTapRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(savePostWithAnimation))
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        self.addGestureRecognizer(doubleTapRecognizer)
+        
         self.drawAnimatedBookmark()
-        self.placeAnimatedBookmark()
     }
     
     func updateSaveButtonImage(for post: Post) {
@@ -112,13 +122,92 @@ class PostView: UIView {
         postViewDelegate.toggleSavePost(post)
     }
     
-    private func placeAnimatedBookmark() {
-        self.animatedBookmark.frame.origin = CGPoint(
-            x: self.image.center.x - Const.bookmarkWidth / 2,
-            y: self.image.center.y - Const.bookmarkHeight / 2)
-        self.animatedBookmark.isHidden = false
+    @objc
+    func savePostWithAnimation(_ sender: UITapGestureRecognizer) {
+        if !self.bookmarkAnimationCompleted {
+            return
+        }
+        
+        self.playBookmarkAnimation(sender)
+        
+//        if let postViewDelegate = self.postViewDelegate, let post {
+//            if !post.isSaved() {
+//                postViewDelegate.toggleSavePost(post)
+//            }
+//        }
     }
     
+    private func playBookmarkAnimation(_ sender: UITapGestureRecognizer) {
+        self.bookmarkAnimationCompleted = false
+        
+        let tapLocation = sender.location(in: self)
+        
+        self.animatedBookmark.frame.origin = CGPoint(
+            x: tapLocation.x - Const.bookmarkWidth / 2,
+            y: tapLocation.y - Const.bookmarkHeight / 2)
+        
+
+//        DispatchQueue.main.async {
+//            UIView.transition(
+//                with: self,
+//                duration: Const.timeToAppear,
+//                options: .transitionCrossDissolve
+//            ) {
+//                self.animatedBookmark.isHidden = false
+//            }
+//            UIView.animate(withDuration: Const.timeToAppear) {
+//                self.animatedBookmark.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+//            }
+//        }
+//        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + Const.timeToAppear) {
+//            UIView.animate(withDuration: Const.timeToBecomeStable) {
+//                self.animatedBookmark.transform = CGAffineTransform.identity
+//            }
+//        }
+//        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + Const.timeToAppear + Const.timeToBecomeStable) {
+//            UIView.animate(withDuration: Const.timeToDisappear) {
+//                self.animatedBookmark.frame.origin = CGPoint(
+//                    x: tapLocation.x - Const.bookmarkWidth / 2,
+//                    y: self.image.frame.maxY)
+//            }
+//            UIView.transition(
+//                with: self,
+//                duration: Const.timeToDisappear,
+//                options: .transitionCrossDissolve
+//            ) {
+//                self.animatedBookmark.isHidden = true
+//            }
+//        }
+        
+        
+        self.animatedBookmark.isHidden = false
+        self.animatedBookmark.layer.opacity = 0
+        
+        UIView.animate(withDuration: Const.timeToAppear) {
+            self.animatedBookmark.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.animatedBookmark.layer.opacity = 1
+        } completion: { _ in
+            UIView.animate(withDuration: Const.timeToBecomeStable) {
+                self.animatedBookmark.transform = CGAffineTransform.identity
+            } completion: { _ in
+                UIView.animate(withDuration: Const.timeToDisappear) {
+                    self.animatedBookmark.frame.origin = CGPoint(
+                        x: tapLocation.x - Const.bookmarkWidth / 2,
+                        y: self.image.frame.maxY)
+                    self.animatedBookmark.layer.opacity = 0
+                }
+                
+                completion: { _ in
+                    self.animatedBookmark.isHidden = true
+                    
+                    self.bookmarkAnimationCompleted = true
+                }
+            }
+        }
+    }
+
     private func drawAnimatedBookmark() {
         self.animatedBookmark.layer.sublayers?.forEach{$0.removeFromSuperlayer()}
         
