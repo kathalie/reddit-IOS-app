@@ -88,7 +88,7 @@ class PostView: UIView {
             target: self,
             action: #selector(savePostWithAnimation))
         doubleTapRecognizer.numberOfTapsRequired = 2
-        self.addGestureRecognizer(doubleTapRecognizer)
+        self.image.addGestureRecognizer(doubleTapRecognizer)
         
         self.drawAnimatedBookmark()
     }
@@ -143,42 +143,34 @@ class PostView: UIView {
         let tapLocation = sender.location(in: self)
         
         self.animatedBookmark.frame.origin = CGPoint(
-            x: tapLocation.x - Const.bookmarkWidth / 2,
+            x: tapLocation.x - Const.bookmarkWidth,
             y: tapLocation.y - Const.bookmarkHeight / 2)
-        
 
-//        DispatchQueue.main.async {
-//            UIView.transition(
-//                with: self,
-//                duration: Const.timeToAppear,
-//                options: .transitionCrossDissolve
-//            ) {
-//                self.animatedBookmark.isHidden = false
-//            }
-//            UIView.animate(withDuration: Const.timeToAppear) {
-//                self.animatedBookmark.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-//            }
+//        self.animatedBookmark.isHidden = false
+//        self.animatedBookmark.alpha = 0
+//        
+//        UIView.animate(withDuration: Const.timeToAppear, delay: 0.01) {
+//            self.animatedBookmark.alpha = 1
+//            self.animatedBookmark.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
 //        }
 //        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + Const.timeToAppear) {
-//            UIView.animate(withDuration: Const.timeToBecomeStable) {
-//                self.animatedBookmark.transform = CGAffineTransform.identity
-//            }
+//        UIView.animate(
+//            withDuration: Const.timeToBecomeStable,
+//            delay: Const.timeToAppear) {
+//            self.animatedBookmark.transform = CGAffineTransform.identity
 //        }
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + Const.timeToAppear + Const.timeToBecomeStable) {
-//            UIView.animate(withDuration: Const.timeToDisappear) {
-//                self.animatedBookmark.frame.origin = CGPoint(
-//                    x: tapLocation.x - Const.bookmarkWidth / 2,
-//                    y: self.image.frame.maxY)
-//            }
-//            UIView.transition(
-//                with: self,
-//                duration: Const.timeToDisappear,
-//                options: .transitionCrossDissolve
-//            ) {
-//                self.animatedBookmark.isHidden = true
-//            }
+//
+//        UIView.animate(
+//            withDuration: Const.timeToDisappear,
+//            delay: Const.timeToAppear + Const.timeToBecomeStable
+//        ) {
+//            self.animatedBookmark.frame.origin = CGPoint(
+//                x: tapLocation.x - Const.bookmarkWidth,
+//                y: self.image.frame.maxY)
+//            self.animatedBookmark.alpha = 0
+//        } completion: { _ in
+//            self.animatedBookmark.isHidden = true
+//            self.bookmarkAnimationCompleted = true
 //        }
         
         
@@ -194,7 +186,7 @@ class PostView: UIView {
             } completion: { _ in
                 UIView.animate(withDuration: Const.timeToDisappear) {
                     self.animatedBookmark.frame.origin = CGPoint(
-                        x: tapLocation.x - Const.bookmarkWidth / 2,
+                        x: tapLocation.x - Const.bookmarkWidth,
                         y: self.image.frame.maxY)
                     self.animatedBookmark.layer.opacity = 0
                 }
