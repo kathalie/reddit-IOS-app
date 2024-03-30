@@ -39,7 +39,7 @@
 		8C3EC5C42B8E79E70041F0CC /* ui-utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ui-utils.swift"; sourceTree = "<group>"; };
 		8C3EC5C62B8F51E20041F0CC /* array-extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "array-extension.swift"; sourceTree = "<group>"; };
 		8C77B61F2B8519CE00200C0B /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
-		8C92A5222B7824B90083C638 /* IOS_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C92A5222B7824B90083C638 /* IOS-app-UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS-app-UIKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C92A5252B7824B90083C638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C92A5272B7824B90083C638 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8C92A52C2B7824B90083C638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		8C92A5192B7824B90083C638 = {
 			isa = PBXGroup;
 			children = (
-				8C92A5242B7824B90083C638 /* IOS_App */,
+				8C92A5242B7824B90083C638 /* IOS-app-UIKit */,
 				8C92A5232B7824B90083C638 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,12 +107,12 @@
 		8C92A5232B7824B90083C638 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C92A5222B7824B90083C638 /* IOS_App.app */,
+				8C92A5222B7824B90083C638 /* IOS-app-UIKit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8C92A5242B7824B90083C638 /* IOS_App */ = {
+		8C92A5242B7824B90083C638 /* IOS-app-UIKit */ = {
 			isa = PBXGroup;
 			children = (
 				8C3EC5C32B8E79D20041F0CC /* utils */,
@@ -130,15 +130,15 @@
 				8C92A5332B7824BB0083C638 /* Info.plist */,
 				8C3479DB2B7BF04A008F1BD3 /* README.md */,
 			);
-			path = IOS_App;
+			path = "IOS-app-UIKit";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8C92A5212B7824B90083C638 /* IOS_App */ = {
+		8C92A5212B7824B90083C638 /* IOS-app-UIKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8C92A5362B7824BB0083C638 /* Build configuration list for PBXNativeTarget "IOS_App" */;
+			buildConfigurationList = 8C92A5362B7824BB0083C638 /* Build configuration list for PBXNativeTarget "IOS-app-UIKit" */;
 			buildPhases = (
 				8C92A51E2B7824B90083C638 /* Sources */,
 				8C92A51F2B7824B90083C638 /* Frameworks */,
@@ -148,12 +148,12 @@
 			);
 			dependencies = (
 			);
-			name = IOS_App;
+			name = "IOS-app-UIKit";
 			packageProductDependencies = (
 				8C3479DF2B7C1502008F1BD3 /* Kingfisher */,
 			);
 			productName = IOS_App;
-			productReference = 8C92A5222B7824B90083C638 /* IOS_App.app */;
+			productReference = 8C92A5222B7824B90083C638 /* IOS-app-UIKit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -171,7 +171,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8C92A51D2B7824B90083C638 /* Build configuration list for PBXProject "IOS_App" */;
+			buildConfigurationList = 8C92A51D2B7824B90083C638 /* Build configuration list for PBXProject "IOS-app-UIKit" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -187,7 +187,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8C92A5212B7824B90083C638 /* IOS_App */,
+				8C92A5212B7824B90083C638 /* IOS-app-UIKit */,
 			);
 		};
 /* End PBXProject section */
@@ -376,7 +376,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VNU8KKW4GG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = IOS_App/Info.plist;
+				INFOPLIST_FILE = "IOS-app-UIKit/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -407,7 +407,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VNU8KKW4GG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = IOS_App/Info.plist;
+				INFOPLIST_FILE = "IOS-app-UIKit/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -432,7 +432,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8C92A51D2B7824B90083C638 /* Build configuration list for PBXProject "IOS_App" */ = {
+		8C92A51D2B7824B90083C638 /* Build configuration list for PBXProject "IOS-app-UIKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8C92A5342B7824BB0083C638 /* Debug */,
@@ -441,7 +441,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8C92A5362B7824BB0083C638 /* Build configuration list for PBXNativeTarget "IOS_App" */ = {
+		8C92A5362B7824BB0083C638 /* Build configuration list for PBXNativeTarget "IOS-app-UIKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8C92A5372B7824BB0083C638 /* Debug */,
