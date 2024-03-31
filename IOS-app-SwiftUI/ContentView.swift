@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        Text("Comments")
+            .font(.title)
+            .padding(.vertical, 12.0)
         CommentsListView()
     }
 }

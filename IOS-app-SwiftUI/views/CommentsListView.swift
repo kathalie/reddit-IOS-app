@@ -34,6 +34,8 @@ struct CommentsListView: View {
                                 value: comment,
                                 label: {CommentCellView(for: comment)}
                             )
+                            .buttonStyle(PlainButtonStyle())
+                            Spacer().frame(height: 10.0)
                         }
                     }
                 }

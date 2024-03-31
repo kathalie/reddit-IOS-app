@@ -22,18 +22,31 @@ struct CommentCellView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(self.username)
-                Text(self.timeCreated)
+            Group {
+                HStack {
+                    SecondaryText(self.username)
+                    HLineSeparator()
+                    SecondaryText(self.timeCreated)
+                }
+                Text(self.commentText)
+                    .lineLimit(1)
+                    .font(.headline)
+                    .padding(.vertical, 16.0)
+                HStack {
+                    Image(systemName: (self.rating < 0 ? "arrowshape.down" : "arrowshape.up"))
+                    Text(String(self.rating))
+                }
+                .foregroundStyle(Color("AccentColor"))
             }
-            Text(self.commentText)
-                .lineLimit(1)
-            HStack {
-                Image(systemName: (self.rating < 0 ? "arrowshape.down" : "arrowshape.up"))
-                Text(String(self.rating))
-            }
+            .frame(
+                maxWidth: .infinity,
+                alignment: .leading
+            )
         }
-        .frame(maxWidth: .infinity)
+        .padding(.vertical, 12.0)
+        .padding(.horizontal, 20.0)
+        .background(Color("BackgroundAccentColor"))
+        .cornerRadius(20.0)
         
     }
 }

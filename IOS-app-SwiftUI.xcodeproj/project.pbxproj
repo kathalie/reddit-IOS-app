@@ -17,6 +17,7 @@
 		8CBFB50D2BB8D9900004A6FB /* fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFB50C2BB8D9900004A6FB /* fetch.swift */; };
 		8CBFB50F2BB9A1A60004A6FB /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFB50E2BB9A1A60004A6FB /* CommentCellView.swift */; };
 		8CBFB5112BB9A1D20004A6FB /* CommentsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFB5102BB9A1D20004A6FB /* CommentsListView.swift */; };
+		8CDFFF8A2BB9EBD000A0F966 /* helper-views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDFFF892BB9EBD000A0F966 /* helper-views.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		8CBFB50C2BB8D9900004A6FB /* fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetch.swift; sourceTree = "<group>"; };
 		8CBFB50E2BB9A1A60004A6FB /* CommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
 		8CBFB5102BB9A1D20004A6FB /* CommentsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsListView.swift; sourceTree = "<group>"; };
+		8CDFFF892BB9EBD000A0F966 /* helper-views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "helper-views.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				8CBFB50E2BB9A1A60004A6FB /* CommentCellView.swift */,
 				8CBFB5102BB9A1D20004A6FB /* CommentsListView.swift */,
 				8C2FE2392BB9C396002C7656 /* CommentDetailsView.swift */,
+				8CDFFF892BB9EBD000A0F966 /* helper-views.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CDFFF8A2BB9EBD000A0F966 /* helper-views.swift in Sources */,
 				8C2FE23A2BB9C396002C7656 /* CommentDetailsView.swift in Sources */,
 				8CBFB50F2BB9A1A60004A6FB /* CommentCellView.swift in Sources */,
 				8CBFB5112BB9A1D20004A6FB /* CommentsListView.swift in Sources */,
