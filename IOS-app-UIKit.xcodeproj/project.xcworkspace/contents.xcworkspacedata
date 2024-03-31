@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/kathrynverkhogliad/DEV/reddit-IOS-app/IOS-app-UIKit.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
