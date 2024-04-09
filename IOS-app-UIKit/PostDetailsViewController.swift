@@ -13,7 +13,7 @@ import SwiftUI
 
 class PostDetailsViewController: UIViewController, PostViewDelegate {
     @IBOutlet private weak var postView: PostView!
-    @IBOutlet private weak var commentsView: UIView!
+    @IBOutlet private weak var commentsCotainer: UIView!
     
     private var updateTableDelegate: PostListViewController?
     private var post: Post?
@@ -36,15 +36,15 @@ class PostDetailsViewController: UIViewController, PostViewDelegate {
         
         let swiftUiView: UIView = swiftUiViewController.view
         
-        self.commentsView.addSubview(swiftUiView)
+        self.commentsCotainer.addSubview(swiftUiView)
         
         swiftUiView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            swiftUiView.topAnchor.constraint(equalTo: self.commentsView.topAnchor),
-            swiftUiView.bottomAnchor.constraint(equalTo: self.commentsView.bottomAnchor),
-            swiftUiView.trailingAnchor.constraint(equalTo: self.commentsView.trailingAnchor),
-            swiftUiView.leadingAnchor.constraint(equalTo: self.commentsView.leadingAnchor),
+            swiftUiView.topAnchor.constraint(equalTo: self.commentsCotainer.topAnchor),
+            swiftUiView.bottomAnchor.constraint(equalTo: self.commentsCotainer.bottomAnchor),
+            swiftUiView.trailingAnchor.constraint(equalTo: self.commentsCotainer.trailingAnchor),
+            swiftUiView.leadingAnchor.constraint(equalTo: self.commentsCotainer.leadingAnchor),
         ])
         
         swiftUiViewController.didMove(toParent: self)

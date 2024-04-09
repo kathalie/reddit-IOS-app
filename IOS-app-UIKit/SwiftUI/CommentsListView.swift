@@ -10,9 +10,11 @@ import SwiftUI
 struct CommentsListView: View {
     private let fetchCommentsUrl: URL
     
-    @State var comments: [Comment] = []
-    @State var isLoadingData: Bool = false
-    @State var fetchError: Bool = false
+    @State private var comments: [Comment] = []
+    @State private var isLoadingData: Bool = false
+    @State private var fetchError: Bool = false
+    @State private var isShowingDetails = false
+    @State private var detailsFor: Comment?
     
     init(for postId: String) {
         self.fetchCommentsUrl = buildCommentsURL(postId: postId)
@@ -34,19 +36,22 @@ struct CommentsListView: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(self.comments, id: \.id) { comment in
-                            NavigationLink(
-                                value: comment,
-                                label: {CommentCellView(for: comment)}
-                            )
+                            Button(action: {
+                                self.detailsFor = comment
+                                self.isShowingDetails = true
+                            }) {
+                                CommentCellView(for: comment)
+                            }
                             .buttonStyle(PlainButtonStyle())
                             Spacer().frame(height: 10.0)
                         }
                     }
                 }
-                .navigationDestination(
-                    for: Comment.self,
-                    destination: {CommentDetailsView(for: $0)}
-                )
+                .sheet(isPresented: self.$isShowingDetails){
+                    if let detailsFor = self.detailsFor {
+                        CommentDetailsView(for: detailsFor)
+                    }
+                }
             }
         }
         .onAppear {
