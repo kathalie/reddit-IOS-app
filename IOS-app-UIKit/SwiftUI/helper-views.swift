@@ -16,7 +16,7 @@ struct SecondaryText: View {
     
     var body: some View {
         Text(self.text)
-            .foregroundStyle(Color("SecondaryColor"))
+            .foregroundStyle(Color("ForegroundColor"))
             .font(.subheadline)
             .fixedSize(horizontal: true, vertical: false)
     }

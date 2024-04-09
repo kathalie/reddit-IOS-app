@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct CommentsListView: View {
-    private let fetchCommentsUrl = buildCommentsURL(postId: "1brhnir")
+    private let fetchCommentsUrl: URL
     
     @State var comments: [Comment] = []
     @State var isLoadingData: Bool = false
     @State var fetchError: Bool = false
+    
+    init(for postId: String) {
+        self.fetchCommentsUrl = buildCommentsURL(postId: postId)
+    }
     
     var body: some View {
         NavigationStack {

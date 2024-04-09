@@ -20,6 +20,7 @@ struct Preview: Codable {
 }
 
 struct Post: Codable {
+    let id: String
     let permalink: String
     let name: String
     let author: String
