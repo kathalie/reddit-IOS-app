@@ -7,8 +7,6 @@
 
 import Foundation
 
-let baseRedditUrl = URL(string: "https://www.reddit.com")!
-
 
 func buildURL(urlBody: URL, subreddit: String = "/r/ios", limit: Int = 1, after: String = "") -> URL {
     let resUrl =  urlBody
@@ -24,11 +22,6 @@ func buildURL(urlBody: URL, subreddit: String = "/r/ios", limit: Int = 1, after:
     return resUrl
 }
 
-enum FetchError: Error {
-    case fail
-    case noData
-    case decodingFailed
-}
 
 func fetchPosts(from url: URL, completionHandler: @escaping (Result<[Post], FetchError>) -> Void) -> Void {
     let task = URLSession.shared.dataTask(with: url) {data, _, error in

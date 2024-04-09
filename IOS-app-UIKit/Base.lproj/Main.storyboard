@@ -27,7 +27,7 @@
         <!--Post List View Controller-->
         <scene sceneID="eyW-1W-QnU">
             <objects>
-                <tableViewController id="EeB-hd-lkH" customClass="PostListViewController" customModule="IOS_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="EeB-hd-lkH" customClass="PostListViewController" customModule="IOS_app_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="O3p-Zg-2NP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,14 +69,14 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post_cell" id="oWq-SQ-MIE" customClass="PostTableViewCell" customModule="IOS_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post_cell" id="oWq-SQ-MIE" customClass="PostTableViewCell" customModule="IOS_app_UIKit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="94" width="414" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oWq-SQ-MIE" id="mhc-4h-zNM">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-As-T0M" customClass="PostView" customModule="IOS_App" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-As-T0M" customClass="PostView" customModule="IOS_app_UIKit" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -115,29 +115,38 @@
         <!--Post Details View Controller-->
         <scene sceneID="fVh-QG-4QK">
             <objects>
-                <viewController id="ZZW-P6-Diy" customClass="PostDetailsViewController" customModule="IOS_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZZW-P6-Diy" customClass="PostDetailsViewController" customModule="IOS_app_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QQR-jF-m5X">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-ES-fG5" customClass="PostView" customModule="IOS_App" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-ES-fG5" customClass="PostView" customModule="IOS_app_UIKit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="xZK-Ii-5iq"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Das-0P-p3r">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QBI-Vc-iGh"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Das-0P-p3r" firstAttribute="top" secondItem="tpo-ES-fG5" secondAttribute="top" id="7lS-AR-Wq2"/>
                             <constraint firstItem="tpo-ES-fG5" firstAttribute="leading" secondItem="QBI-Vc-iGh" secondAttribute="leading" id="Ko1-BP-2TE"/>
                             <constraint firstItem="tpo-ES-fG5" firstAttribute="top" secondItem="QBI-Vc-iGh" secondAttribute="top" id="VMM-cu-xFx"/>
+                            <constraint firstItem="Das-0P-p3r" firstAttribute="leading" secondItem="QBI-Vc-iGh" secondAttribute="leading" id="f0y-fe-mUq"/>
                             <constraint firstItem="tpo-ES-fG5" firstAttribute="trailing" secondItem="QBI-Vc-iGh" secondAttribute="trailing" id="g35-1H-foI"/>
+                            <constraint firstItem="QBI-Vc-iGh" firstAttribute="bottom" secondItem="Das-0P-p3r" secondAttribute="bottom" id="nUq-nL-mMS"/>
+                            <constraint firstItem="QBI-Vc-iGh" firstAttribute="trailing" secondItem="Das-0P-p3r" secondAttribute="trailing" id="vc8-6T-oIR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6KQ-2a-Zod"/>
                     <connections>
+                        <outlet property="commentsView" destination="Das-0P-p3r" id="iHD-XP-19B"/>
                         <outlet property="postView" destination="tpo-ES-fG5" id="T3M-YC-6fy"/>
                     </connections>
                 </viewController>

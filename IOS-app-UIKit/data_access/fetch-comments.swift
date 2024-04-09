@@ -7,8 +7,6 @@
 
 import Foundation
 
-let baseRedditUrl = URL(string: "https://www.reddit.com")!
-
 func buildCommentsURL(urlBody: URL = baseRedditUrl, subreddit: String = "/r/ios", postId: String, limit: String = "", after: String = "") -> URL {
     let resUrl =  urlBody
         .appending(path: subreddit)
@@ -25,13 +23,8 @@ func buildCommentsURL(urlBody: URL = baseRedditUrl, subreddit: String = "/r/ios"
     return resUrl
 }
 
-enum FetchError: Error {
-    case fail
-    case noData
-    case decodingFailed
-}
 
-func fetchPosts(from url: URL, completionHandler: @escaping (Result<[Comment], FetchError>) -> Void) -> Void {
+func fetchComments(from url: URL, completionHandler: @escaping (Result<[Comment], FetchError>) -> Void) -> Void {
     let task = URLSession.shared.dataTask(with: url) {data, _, error in
         if let _ = error {
             completionHandler(.failure(.fail))

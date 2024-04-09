@@ -9,9 +9,12 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class PostDetailsViewController: UIViewController, PostViewDelegate {
-    @IBOutlet weak var postView: PostView!
+    @IBOutlet private weak var commentsView: UIView!
+    @IBOutlet private weak var postView: PostView!
+    
     private var updateTableDelegate: PostListViewController?
     private var post: Post?
     
@@ -24,7 +27,20 @@ class PostDetailsViewController: UIViewController, PostViewDelegate {
         }
         
         self.postView.config(with: post, delegate: self)
+        
+        self.addCommentsListView(to: post)
     }
+    
+    private func addCommentsListView(to post: Post) {
+        
+        
+        let swiftUiViewController: UIViewController = UIHostingController(rootView: CommentsListView())
+        
+        let swiftUiView: UIView = swiftUiViewController.view
+        
+        
+    }
+
     
     func config(with post: Post?, updateTableDelegate: PostListViewController) {
         self.post = post

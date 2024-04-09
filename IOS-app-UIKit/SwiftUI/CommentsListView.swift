@@ -46,14 +46,14 @@ struct CommentsListView: View {
             }
         }
         .onAppear {
-            self.fetchComments()
+            self.getComments()
         }
     }
     
-    private func fetchComments() {
+    private func getComments() {
         self.isLoadingData = true
         
-        fetchPosts(from: self.fetchCommentsUrl, completionHandler: {
+        fetchComments(from: self.fetchCommentsUrl, completionHandler: {
             switch $0 {
             case .success(let comments):
                 self.comments = comments
