@@ -29,7 +29,6 @@ struct CommentCellView: View {
                     SecondaryText(self.timeCreated)
                 }
                 Text(self.commentText)
-                    .lineLimit(1)
                     .font(.headline)
                     .padding(.vertical, 16.0)
                 HStack {
