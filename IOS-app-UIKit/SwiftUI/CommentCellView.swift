@@ -32,7 +32,7 @@ struct CommentCellView: View {
                     .font(.headline)
                     .padding(.vertical, 16.0)
                 HStack {
-//                    Image(systemName: (self.rating < 0 ? "arrowshape.down" : "arrowshape.up"))
+                    Image(systemName: (self.rating < 0 ? "arrowshape.down" : "arrowshape.up"))
                     Text(String(self.rating))
                 }
                 .foregroundStyle(Color("AccentColor"))

@@ -11,12 +11,12 @@ struct Source: Codable {
     let url: String
 }
 
-struct Image: Codable {
+struct ImageSource: Codable {
     let source: Source
 }
 
 struct Preview: Codable {
-    let images: [Image]
+    let images: [ImageSource]
 }
 
 struct Post: Codable {
