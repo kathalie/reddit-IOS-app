@@ -13,7 +13,6 @@ struct CommentsListView: View {
     @State private var comments: [Comment] = []
     @State private var isLoadingData: Bool = false
     @State private var fetchError: Bool = false
-    @State private var isShowingDetails = false
     @State private var detailsFor: Comment?
     
     init(for postId: String) {
@@ -38,7 +37,6 @@ struct CommentsListView: View {
                         ForEach(self.comments, id: \.id) { comment in
                             Button(action: {
                                 self.detailsFor = comment
-                                self.isShowingDetails = true
                             }) {
                                 CommentCellView(for: comment)
                             }
@@ -47,7 +45,10 @@ struct CommentsListView: View {
                         }
                     }
                 }
-                .sheet(isPresented: self.$isShowingDetails){
+                .sheet(isPresented: Binding(
+                    get: { self.detailsFor != nil },
+                    set: { _ in self.detailsFor = nil }
+                )){
                     if let detailsFor = self.detailsFor {
                         CommentDetailsView(for: detailsFor)
                     }
