@@ -234,6 +234,7 @@ extension PostListViewController: PostViewDelegate {
             
             if self.onlyFilteredPosts {
                 self.posts = self.postSavingManager.cachedPosts
+                self.searchBar.text = ""
             }
 
             self.tableView.reloadData()
