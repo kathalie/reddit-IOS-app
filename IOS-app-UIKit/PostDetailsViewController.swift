@@ -19,15 +19,19 @@ class PostDetailsViewController: UIViewController, PostViewDelegate {
     
     private var updateTableDelegate: PostListViewController?
     private var post: Post?
+    private var postTapRecognizer: PostTapRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let post = self.post else {
+        guard 
+            let post = self.post,
+            let postTapRecognizer = self.postTapRecognizer
+        else {
             return
         }
         
-        self.postView.config(with: post, delegate: self)
+        self.postView.config(with: post, delegate: self, tapRecognizer: postTapRecognizer)
         
         self.addCommentsListView(for: post.id)
     }
@@ -52,8 +56,9 @@ class PostDetailsViewController: UIViewController, PostViewDelegate {
     }
 
     
-    func config(with post: Post?, updateTableDelegate: PostListViewController) {
+    func config(with post: Post?, updateTableDelegate: PostListViewController, postTapRecognizer: PostTapRecognizer) {
         self.post = post
+        self.postTapRecognizer = postTapRecognizer
         self.updateTableDelegate = updateTableDelegate
         self.postSavingManager = updateTableDelegate.postSavingManager
     }

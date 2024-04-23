@@ -12,7 +12,7 @@ final class PostTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var postView: PostView!
     
-    func config(with data: Post, postDelegate: PostViewDelegate) {
-        self.postView.config(with: data, delegate: postDelegate)
+    func config(with data: Post, postDelegate: PostViewDelegate, tapRecognizer: PostTapRecognizer) {
+        self.postView.config(with: data, delegate: postDelegate, tapRecognizer: tapRecognizer)
     }
 }

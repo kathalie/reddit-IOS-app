@@ -54,7 +54,7 @@ class PostView: UIView {
     }
     
     
-    func config(with post: Post, delegate: PostViewDelegate?) {
+    func config(with post: Post, delegate: PostViewDelegate?, tapRecognizer: PostTapRecognizer) {
         self.post = post
         self.postViewDelegate = delegate
         
@@ -89,6 +89,9 @@ class PostView: UIView {
             action: #selector(savePostWithAnimation))
         doubleTapRecognizer.numberOfTapsRequired = 2
         self.image.addGestureRecognizer(doubleTapRecognizer)
+        
+        tapRecognizer.require(toFail: doubleTapRecognizer)
+        self.image.addGestureRecognizer(tapRecognizer)
         
         self.drawAnimatedBookmark()
     }
@@ -130,16 +133,16 @@ class PostView: UIView {
             return
         }
         
-        self.playBookmarkAnimation(sender)
-        
-        if let postViewDelegate = self.postViewDelegate, let post {
-            if !post.isSaved(in: postViewDelegate.postSavingManager.cachedPosts) {
-                postViewDelegate.toggleSavePost(post)
+        self.playBookmarkAnimation(sender) {
+            if let postViewDelegate = self.postViewDelegate, let post = self.post {
+                if !post.isSaved(in: postViewDelegate.postSavingManager.cachedPosts) {
+                    postViewDelegate.toggleSavePost(post)
+                }
             }
         }
     }
     
-    private func playBookmarkAnimation(_ sender: UITapGestureRecognizer) {
+    private func playBookmarkAnimation(_ sender: UITapGestureRecognizer, afterAnimation: @escaping () -> Void) {
         self.bookmarkAnimationCompleted = false
         
         let tapLocation = sender.location(in: self)
@@ -197,6 +200,8 @@ class PostView: UIView {
                     self.animatedBookmark.isHidden = true
                     
                     self.bookmarkAnimationCompleted = true
+                    
+                    afterAnimation()
                 }
             }
         }

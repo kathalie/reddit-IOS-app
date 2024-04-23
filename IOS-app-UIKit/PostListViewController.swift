@@ -7,6 +7,15 @@
 
 import UIKit
 
+class PostTapRecognizer: UITapGestureRecognizer {
+    let post: Post
+    
+    init(target: AnyObject, action: Selector, post: Post) {
+        self.post = post
+        super.init(target: target, action: action)
+    }
+}
+
 class PostListViewController: UITableViewController {
     struct Const {
         static let cellReuseIdentifier = "post_cell"
@@ -104,9 +113,14 @@ class PostListViewController: UITableViewController {
         switch segue.identifier {
         case Const.goToPostDetails:
             let nextVc = segue.destination as! PostDetailsViewController
-
+            
             if let lastSelectedPost = self.lastSelectedPost {
-                nextVc.config(with: lastSelectedPost, updateTableDelegate: self)
+                let postTapRecognizer = PostTapRecognizer(
+                    target: self,
+                    action: #selector(handlePostTap(_:)),
+                    post: lastSelectedPost)
+                
+                nextVc.config(with: lastSelectedPost, updateTableDelegate: self, postTapRecognizer: postTapRecognizer)
             }
 
         default: break
@@ -126,13 +140,24 @@ class PostListViewController: UITableViewController {
         
         print("\(indexPath.row) : PRINTED : \(post.title)") // TODO remove
         
-        cell.config(with: post, postDelegate: self)
+        let postTapRecognizer = PostTapRecognizer(
+            target: self,
+            action: #selector(handlePostTap(_:)),
+            post: post)
+        
+        cell.config(with: post, postDelegate: self, tapRecognizer: postTapRecognizer)
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.lastSelectedPost = self.posts[indexPath.row]
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.handlePostTap(on: self.posts[indexPath.row])
+//    }
+    
+    @objc
+    func handlePostTap(_ sender: PostTapRecognizer) {
+        self.lastSelectedPost = sender.post
+        
         self.performSegue(
             withIdentifier: Const.goToPostDetails,
             sender: nil
