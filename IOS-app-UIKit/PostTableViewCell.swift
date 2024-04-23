@@ -10,7 +10,7 @@ import UIKit
 
 final class PostTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var postView: PostView!
+    @IBOutlet private weak var postView: PostView!
     
     func config(with data: Post, postDelegate: PostViewDelegate) {
         self.postView.config(with: data, delegate: postDelegate)

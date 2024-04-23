@@ -12,9 +12,9 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         static let cellReuseIdentifier = "post_cell"
         static let goToPostDetails = "go_to_post_details"
     }
-    @IBOutlet weak var subredditLabel: UILabel!
-    @IBOutlet weak var filterSavedButton: UIButton!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var subredditLabel: UILabel!
+    @IBOutlet private weak var filterSavedButton: UIButton!
+    @IBOutlet private weak var searchBar: UISearchBar!
     
     private var posts: [Post] = []
     private var lastSelectedPost: Post?

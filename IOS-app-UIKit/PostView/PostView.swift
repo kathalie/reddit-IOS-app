@@ -22,18 +22,18 @@ class PostView: UIView {
     
     let kCONTENT_XIB_NAME = "PostView"
     
-    @IBOutlet var postView: UIView!
+    @IBOutlet private var postView: UIView!
     
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var domainLabel: UILabel!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var ratingButton: UIButton!
-    @IBOutlet weak var commentsButton: UIButton!
-    @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var animatedBookmark: UIView!
+    @IBOutlet private weak var usernameLabel: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var domainLabel: UILabel!
+    @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var image: UIImageView!
+    @IBOutlet private weak var ratingButton: UIButton!
+    @IBOutlet private weak var commentsButton: UIButton!
+    @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var animatedBookmark: UIView!
     
     private var post: Post?
     private var bookmarkAnimationCompleted: Bool = true
