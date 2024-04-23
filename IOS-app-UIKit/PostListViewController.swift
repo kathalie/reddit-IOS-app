@@ -56,6 +56,7 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         else {
             self.searchBar.text = ""
             self.searchBar.isHidden = true
+            self.searchBar.resignFirstResponder()
             self.posts = []
             self.processPostsFetch()
         }
