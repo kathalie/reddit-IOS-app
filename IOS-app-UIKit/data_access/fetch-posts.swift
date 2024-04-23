@@ -24,7 +24,9 @@ func buildURL(urlBody: URL, subreddit: String = "/r/ios", limit: Int = 1, after:
 
 
 func fetchPosts(from url: URL, completionHandler: @escaping (Result<[Post], FetchError>) -> Void) -> Void {
-    let task = URLSession.shared.dataTask(with: url) {data, _, error in
+    let urlSession = URLSession(configuration: .ephemeral)
+    
+    let task = urlSession.dataTask(with: url) {data, _, error in
         
         if let _ = error {
             completionHandler(.failure(.fail))
@@ -48,9 +50,9 @@ func fetchPosts(from url: URL, completionHandler: @escaping (Result<[Post], Fetc
             return
         }
         
-        //print(redditData)
+        let retrievedPosts = retrievePosts(from: redditData)
         
-        completionHandler(.success(retrievePosts(from: redditData)))
+        completionHandler(.success(retrievedPosts))
     }
     
     task.resume()

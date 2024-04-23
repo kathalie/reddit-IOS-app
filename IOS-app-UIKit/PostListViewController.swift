@@ -19,6 +19,7 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     private var posts: [Post] = []
     private var lastSelectedPost: Post?
     private var isLoadingData = false
+    private var unableToLoadData = false
     private var onlySavedPosts = false
     private var searchQuery = "" {
         didSet {
@@ -30,8 +31,11 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         }
     }
     
-    
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.addRefreshControl()
+
         self.subredditLabel.text = "r/ios"
         
         self.filterSavedButton.addTarget(
@@ -41,6 +45,27 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         )
         
         self.searchBar.isHidden = true
+    }
+    
+    private func addRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.backgroundView = refreshControl
+        }
+    }
+    
+    @objc func refresh(_ refreshControl: UIRefreshControl) {
+        if self.onlySavedPosts {
+            return
+        }
+        
+        self.processPostsFetch()
+        
+        refreshControl.endRefreshing()
     }
     
     @objc
@@ -113,21 +138,35 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         let scrollThreshold = contentSizeHeight - tableView.bounds.size.height
 
         if scrollView.contentOffset.y > scrollThreshold && !isLoadingData {
-            isLoadingData = true
-            
             self.processPostsFetch(after: self.posts.last?.name ?? "")
         }
     }
     
     private func processPostsFetch(count n: Int = 20, after name: String = "") {
+        self.isLoadingData = true
+        
         let url = buildURL(urlBody: baseRedditUrl, limit: n, after: name)
         
         fetchPosts(from: url, completionHandler: {
             switch $0 {
             case .success(let posts):
+                print("ADDED: \(posts.map{$0.name})") //TODO remove
+                
+                if self.unableToLoadData {
+                    self.posts = []
+                    self.unableToLoadData = false
+                }
+                
                 self.processPosts(posts)
             case .failure(let error):
                 print(error.localizedDescription)
+                
+                self.unableToLoadData = true
+                
+                DispatchQueue.main.async {
+                    self.posts = PostSavingManager.readAll()
+                    self.tableView.reloadData()
+                }
             }
             
             self.isLoadingData = false
@@ -135,9 +174,6 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     }
     
     private func processPosts(_ posts: [Post]) {
-        print("ADDED: \(posts.map{$0.name})") //TODO remove
-        
-        
         DispatchQueue.main.async {
             self.posts.append(contentsOf: posts)
             self.tableView.reloadData()
