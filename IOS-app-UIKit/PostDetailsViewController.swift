@@ -12,13 +12,14 @@ import UIKit
 import SwiftUI
 
 class PostDetailsViewController: UIViewController, PostViewDelegate {
+    var postSavingManager: PostSavingManager = PostSavingManager() // TODO: it loads extra data
+    
     @IBOutlet private weak var postView: PostView!
     @IBOutlet private weak var commentsCotainer: UIView!
     
     private var updateTableDelegate: PostListViewController?
     private var post: Post?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,15 +55,14 @@ class PostDetailsViewController: UIViewController, PostViewDelegate {
     func config(with post: Post?, updateTableDelegate: PostListViewController) {
         self.post = post
         self.updateTableDelegate = updateTableDelegate
+        self.postSavingManager = updateTableDelegate.postSavingManager
     }
     
     func updatePosts() {
         self.updateTableDelegate?.updatePosts()
         
-        guard let post = self.post else {
-            return
+        if let post = self.post {
+            self.postView.updateSaveButtonImage(for: post)
         }
-        
-        self.postView.updateSaveButtonImage(for: post)
     }
 }

@@ -46,7 +46,11 @@ struct RedditData: Codable {
 }
 
 extension Post {
-    func isSaved() -> Bool {
-        return PostSavingManager.isSaved(postName: self.name)
+    func isSaved(in savedPosts: [Post]) -> Bool {
+        return savedPosts.contains(where: {post in self.id == post.id})
     }
+    
+//    func isSaved() -> Bool {
+//        return PostSavingManager.isSaved(postName: self.name)
+//    }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PostListViewController: UITableViewController, PostViewDelegate {
+class PostListViewController: UITableViewController {
     struct Const {
         static let cellReuseIdentifier = "post_cell"
         static let goToPostDetails = "go_to_post_details"
@@ -16,23 +16,26 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     @IBOutlet private weak var filterSavedButton: UIButton!
     @IBOutlet private weak var searchBar: UISearchBar!
     
+    internal var postSavingManager = PostSavingManager()
+    private var filteredPosts: [Post] = []
     private var posts: [Post] = []
     private var lastSelectedPost: Post?
     private var isLoadingData = false
     private var unableToLoadData = false
-    private var onlySavedPosts = false
+    private var onlyFilteredPosts = false
     private var searchQuery = "" {
         didSet {
-            let savedPosts = PostSavingManager.readAll()
             self.posts = 
                 searchQuery.isEmpty ?
-                savedPosts :
-                savedPosts.filter{$0.title.lowercased().contains(searchQuery.lowercased())}
+                self.filteredPosts :
+                self.filteredPosts.filter{$0.title.lowercased().contains(searchQuery.lowercased())}
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.filteredPosts = self.postSavingManager.cachedPosts
         
         self.addRefreshControl()
 
@@ -45,6 +48,16 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         )
         
         self.searchBar.isHidden = true
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(savePostsIntoFile),
+            name: UIApplication.willResignActiveNotification, object: nil)
+    }
+    
+    @objc
+    private func savePostsIntoFile() {
+        self.postSavingManager.saveCache()
     }
     
     private func addRefreshControl() {
@@ -59,34 +72,30 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     }
     
     @objc func refresh(_ refreshControl: UIRefreshControl) {
-        if self.onlySavedPosts {
-            return
+        if !self.onlyFilteredPosts {
+            self.processPostsLoad()
         }
-        
-        self.processPostsFetch()
         
         refreshControl.endRefreshing()
     }
     
     @objc
     func handleSavedFiltering() {
-        self.onlySavedPosts = !self.onlySavedPosts
+        self.onlyFilteredPosts = !self.onlyFilteredPosts
         
-        setSaveButtonImage(for: self.filterSavedButton, isSaved: self.onlySavedPosts)
+        setSaveButtonImage(for: self.filterSavedButton, isSaved: self.onlyFilteredPosts)
         
-        if self.onlySavedPosts {
+        if self.onlyFilteredPosts {
             self.searchBar.isHidden = false
-            self.posts = PostSavingManager.readAll()
+            self.posts = self.filteredPosts
         }
         else {
             self.searchBar.text = ""
             self.searchBar.isHidden = true
             self.searchBar.resignFirstResponder()
             self.posts = []
-            self.processPostsFetch()
+            self.processPostsLoad()
         }
-        
-        
         
         self.tableView.reloadData()
     }
@@ -96,13 +105,14 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         case Const.goToPostDetails:
             let nextVc = segue.destination as! PostDetailsViewController
 
-            nextVc.config(with: self.lastSelectedPost, updateTableDelegate: self)
+            if let lastSelectedPost = self.lastSelectedPost {
+                nextVc.config(with: lastSelectedPost, updateTableDelegate: self)
+            }
 
         default: break
         }
     }
 
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.posts.count
     }
@@ -130,7 +140,7 @@ class PostListViewController: UITableViewController, PostViewDelegate {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if self.onlySavedPosts {
+        if self.onlyFilteredPosts {
             return
         }
         
@@ -138,11 +148,11 @@ class PostListViewController: UITableViewController, PostViewDelegate {
         let scrollThreshold = contentSizeHeight - tableView.bounds.size.height
 
         if scrollView.contentOffset.y > scrollThreshold && !isLoadingData {
-            self.processPostsFetch(after: self.posts.last?.name ?? "")
+            self.processPostsLoad(after: self.posts.last?.name ?? "")
         }
     }
     
-    private func processPostsFetch(count n: Int = 20, after name: String = "") {
+    private func processPostsLoad(count n: Int = 20, after name: String = "") {
         self.isLoadingData = true
         
         let url = buildURL(urlBody: baseRedditUrl, limit: n, after: name)
@@ -164,7 +174,7 @@ class PostListViewController: UITableViewController, PostViewDelegate {
                 self.unableToLoadData = true
                 
                 DispatchQueue.main.async {
-                    self.posts = PostSavingManager.readAll()
+                    self.posts = self.postSavingManager.cachedPosts
                     self.tableView.reloadData()
                 }
             }
@@ -179,18 +189,31 @@ class PostListViewController: UITableViewController, PostViewDelegate {
             self.tableView.reloadData()
         }
     }
-    
-    func updatePosts() {
-        self.tableView.reloadData()
-    }
-
 }
 
 
 
 extension PostListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchQuery = searchText
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.searchQuery = searchText
+            self.tableView.reloadData()
+        }
     }
 }
+
+extension PostListViewController: PostViewDelegate {
+    func updatePosts() {
+        DispatchQueue.main.async {
+            self.filteredPosts = self.postSavingManager.cachedPosts
+            
+            if self.onlyFilteredPosts {
+                self.posts = self.postSavingManager.cachedPosts
+            }
+
+            self.tableView.reloadData()
+        }
+    }
+}
+
+

@@ -94,7 +94,9 @@ class PostView: UIView {
     }
     
     func updateSaveButtonImage(for post: Post) {
-        setSaveButtonImage(for: self.saveButton, isSaved: post.isSaved())
+        if let postViewDelegate = self.postViewDelegate {
+            setSaveButtonImage(for: self.saveButton, isSaved: post.isSaved(in: postViewDelegate.postSavingManager.cachedPosts))
+        }
     }
     
     @objc
@@ -131,7 +133,7 @@ class PostView: UIView {
         self.playBookmarkAnimation(sender)
         
         if let postViewDelegate = self.postViewDelegate, let post {
-            if !post.isSaved() {
+            if !post.isSaved(in: postViewDelegate.postSavingManager.cachedPosts) {
                 postViewDelegate.toggleSavePost(post)
             }
         }

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 protocol PostViewDelegate: UIViewController {
+    var postSavingManager: PostSavingManager {get set}
     func sharePost(url: URL)
     func toggleSavePost(_ post: Post)
     func updatePosts()
@@ -22,13 +23,13 @@ extension PostViewDelegate {
     }
     
     func toggleSavePost(_ post: Post) {
-        let success = post.isSaved() 
-        ? PostSavingManager.delete(post)
-        : PostSavingManager.save(post)
         
-        print(success ? "Posts updated" : "Failed to update posts")
-        print("Current posts count: \(PostSavingManager.readAll().count)")
-        
+        if post.isSaved(in: self.postSavingManager.cachedPosts) {
+            self.postSavingManager.removeFromCached(post)
+        } else {
+            self.postSavingManager.cache(post)
+        }
+
         self.updatePosts()
     }
 }
